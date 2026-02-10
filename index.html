@@ -597,18 +597,58 @@
             opacity: 0.9;
         }
 
-        /* Section Common Styles */
-        .section {
-            padding: 5rem 5%;
+        /* NEW: About Us Section */
+        .about-section {
+            padding: 6rem 5%;
+            background: var(--bg-secondary);
         }
 
-        .section-header {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            text-align: center;
+        .about-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
         }
 
-        .section-subtitle {
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow-color);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image-wrapper:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        .about-badge {
+            position: absolute;
+            top: 2rem;
+            left: -1rem;
+            background: var(--accent-primary);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            box-shadow: 0 8px 25px rgba(180, 134, 11, 0.3);
+        }
+
+        .about-content {
+            padding-left: 2rem;
+        }
+
+        .about-subtitle {
             font-size: 0.95rem;
             color: var(--accent-secondary);
             margin-bottom: 1rem;
@@ -616,56 +656,507 @@
             text-transform: uppercase;
         }
 
-        .section-title {
+        .about-title {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
             font-size: clamp(2rem, 3.5vw, 3rem);
         }
 
-        .section-description {
+        .about-description {
             font-size: 1.1rem;
             color: var(--text-secondary);
             line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
-        /* Filter Tabs */
-        .filter-tabs {
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
             display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
-        .filter-tab {
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: 1.5px solid var(--border-color);
-            border-radius: 4px;
+        .value-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .value-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             color: var(--text-primary);
+        }
+
+        .value-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* NEW: Services Section with Slider */
+        .services-section {
+            padding: 6rem 5%;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-slider-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .services-slider {
+            display: flex;
+            gap: 2.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 1rem 0.5rem 3rem;
+            -ms-overflow-style: none;
+        }
+
+        .services-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .service-card {
+            flex: 0 0 calc(33.333% - 1.67rem);
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all var(--transition-speed) var(--transition-ease);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            cursor: pointer;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px var(--shadow-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-link {
+            color: var(--accent-primary);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 10px;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all var(--transition-speed) var(--transition-ease);
             display: flex;
             align-items: center;
-            gap: 6px;
-            white-space: nowrap;
+            justify-content: center;
         }
 
-        .filter-tab:hover,
-        .filter-tab.active {
-            background: var(--accent-secondary);
-            border-color: var(--accent-secondary);
+        .slider-btn:hover:not(:disabled) {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: scale(1.1);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-ease);
+        }
+
+        .slider-dot.active {
+            background: var(--accent-primary);
+            transform: scale(1.2);
+        }
+
+        /* NEW: Agents Section with Slider */
+        .agents-section {
+            padding: 6rem 5%;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agents-slider-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .agents-slider {
+            display: flex;
+            gap: 2.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 1rem 0.5rem 3rem;
+            -ms-overflow-style: none;
+        }
+
+        .agents-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .agent-card {
+            flex: 0 0 calc(33.333% - 1.67rem);
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all var(--transition-speed) var(--transition-ease);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            min-height: 450px;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px var(--shadow-hover);
+        }
+
+        .agent-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .agent-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .agent-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-title {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .agent-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .agent-contact a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) var(--transition-ease);
+            color: var(--text-primary);
+        }
+
+        .agent-contact a:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        /* NEW: Neighborhoods Section with Slider */
+        .neighborhoods-section {
+            padding: 6rem 5%;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neighborhoods-slider-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .neighborhoods-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 1rem 0.5rem 3rem;
+            -ms-overflow-style: none;
+        }
+
+        .neighborhoods-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .neighborhood-card {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 400px;
+            cursor: pointer;
+            min-width: 300px;
+        }
+
+        .neighborhood-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .neighborhood-card:hover .neighborhood-image {
+            transform: scale(1.1);
+        }
+
+        .neighborhood-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 2rem;
             color: #FFFFFF;
         }
 
-        /* Properties Grid */
+        .neighborhood-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .neighborhood-stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* NEW: Testimonials Section with Enhanced Slider */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: var(--gradient-dark);
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-slider-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 1rem 0.5rem 3rem;
+            -ms-overflow-style: none;
+        }
+
+        .testimonials-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 350px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            min-height: 320px;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-primary);
+        }
+
+        .author-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* NEW: Partners Section with Slider */
+        .partners-section {
+            padding: 5rem 5%;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partners-slider-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .partners-slider {
+            display: flex;
+            gap: 4rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 2rem 0.5rem;
+            -ms-overflow-style: none;
+            align-items: center;
+        }
+
+        .partners-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .partner-logo {
+            flex: 0 0 180px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all var(--transition-speed) var(--transition-ease);
+            max-width: 150px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Properties Section */
+        .properties-section {
+            padding: 6rem 5%;
+            background: var(--bg-primary);
+        }
+
         .properties-grid {
             max-width: 1600px;
             margin: 0 auto;
@@ -812,6 +1303,74 @@
             font-weight: 600;
             color: var(--text-primary);
             font-size: 0.85rem;
+        }
+
+        /* Section Common Styles */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1.5px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-ease);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--accent-secondary);
+            border-color: var(--accent-secondary);
+            color: #FFFFFF;
         }
 
         /* No Results */
@@ -1086,9 +1645,9 @@
             transform: translateY(-3px);
         }
 
-        /* Footer - CHANGED BACKGROUND COLOR */
+        /* Footer */
         footer {
-            background: #0A0A0A; /* Changed from gradient to solid dark color */
+            background: #0A0A0A;
             color: #FFFFFF;
             padding: 4rem 5% 2rem;
         }
@@ -1179,9 +1738,35 @@
         }
 
         /* Responsive Breakpoints */
+        @media (max-width: 1600px) {
+            .service-card,
+            .agent-card,
+            .neighborhood-card {
+                flex: 0 0 calc(50% - 1.25rem);
+            }
+        }
+
         @media (max-width: 1200px) {
             .properties-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-content {
+                padding-left: 0;
+            }
+            
+            .service-card,
+            .agent-card {
+                flex: 0 0 calc(50% - 1.25rem);
+            }
+            
+            .neighborhood-card {
+                flex: 0 0 calc(50% - 1rem);
             }
         }
 
@@ -1213,6 +1798,16 @@
             .modal-features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .service-card,
+            .agent-card,
+            .neighborhood-card {
+                flex: 0 0 calc(100% - 1rem);
+            }
+            
+            .testimonial-card {
+                flex: 0 0 300px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1222,6 +1817,7 @@
             
             .hero {
                 padding: 70px 4% 30px;
+                min-height: 90vh;
             }
             
             .hero-title {
@@ -1237,6 +1833,7 @@
             
             .btn {
                 width: 100%;
+                min-width: unset;
             }
             
             .search-section {
@@ -1247,11 +1844,21 @@
                 padding: 2rem;
             }
             
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .filter-tabs {
                 justify-content: flex-start;
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
                 -webkit-overflow-scrolling: touch;
+                gap: 0.5rem;
+            }
+            
+            .filter-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
             }
             
             .properties-grid {
@@ -1273,6 +1880,30 @@
                 height: 46px;
                 font-size: 1.1rem;
             }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card,
+            .agent-card,
+            .neighborhood-card,
+            .testimonial-card {
+                flex: 0 0 100%;
+            }
+            
+            .slider-controls {
+                display: none;
+            }
+            
+            .partners-slider {
+                gap: 2rem;
+            }
+            
+            .partner-logo {
+                flex: 0 0 120px;
+                height: 60px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1286,6 +1917,10 @@
             
             .hero-content {
                 padding: 0 4%;
+            }
+            
+            .hero-description {
+                padding: 0;
             }
             
             .logo-main {
@@ -1318,11 +1953,53 @@
             .modal-features-grid {
                 padding: 1.5rem;
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
+            }
+            
+            .about-image {
+                height: 350px;
+            }
+            
+            .about-badge {
+                left: 0;
+                top: 1rem;
+            }
+            
+            .service-card,
+            .agent-card {
+                min-height: auto;
+                padding: 2rem 1.5rem;
+            }
+            
+            .agent-image {
+                height: 220px;
+            }
+            
+            .neighborhood-card {
+                height: 300px;
+            }
+            
+            .neighborhood-name {
+                font-size: 1.5rem;
+            }
+            
+            .neighborhood-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
+                min-height: auto;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
             }
         }
 
@@ -1353,11 +2030,85 @@
             .stat-number {
                 font-size: 1.8rem;
             }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .agent-name {
+                font-size: 1.2rem;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (min-width: 768px) and (max-height: 900px) {
             .hero {
                 min-height: 600px;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .service-card,
+            .agent-card,
+            .neighborhood-card {
+                flex: 0 0 calc(25% - 1.88rem);
+            }
+        }
+
+        /* Tablet Portrait */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .hero {
+                min-height: 70vh;
+            }
+            
+            .about-container {
+                gap: 2rem;
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+            .hero {
+                min-height: 80vh;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1920px) {
+            .section {
+                padding: 7rem 5%;
+            }
+            
+            .hero {
+                min-height: 100vh;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
             }
         }
 
@@ -1372,6 +2123,14 @@
             .hero-bg img {
                 animation: none !important;
             }
+            
+            .services-slider,
+            .agents-slider,
+            .neighborhoods-slider,
+            .testimonials-slider,
+            .partners-slider {
+                scroll-behavior: auto;
+            }
         }
 
         /* Touch Device Optimizations */
@@ -1385,7 +2144,14 @@
             .modal-close:hover,
             .modal-actions button:hover,
             .floating-btn:hover,
-            .social-links a:hover {
+            .social-links a:hover,
+            .service-card:hover,
+            .agent-card:hover,
+            .neighborhood-card:hover,
+            .partner-logo:hover,
+            .slider-btn:hover,
+            .agent-contact a:hover,
+            .service-link:hover {
                 transform: none !important;
             }
             
@@ -1396,8 +2162,87 @@
             .favorite-btn,
             .modal-close,
             .modal-actions button,
-            .floating-btn {
+            .floating-btn,
+            .slider-btn {
                 min-height: 44px;
+            }
+            
+            .service-card,
+            .agent-card,
+            .neighborhood-card {
+                min-height: auto;
+            }
+            
+            .slider-controls {
+                display: flex;
+            }
+            
+            /* Improve touch targets */
+            .nav-menu a,
+            .filter-tab,
+            .favorite-btn,
+            .modal-actions button {
+                padding: 12px;
+            }
+            
+            .search-field input,
+            .search-field select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* High Pixel Density Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-bg img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-wrapper,
+            .floating-controls,
+            .search-section,
+            .slider-controls,
+            .slider-dots {
+                display: none;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 2rem 5%;
+            }
+            
+            .hero-bg {
+                display: none;
+            }
+            
+            .hero-content {
+                color: var(--text-primary);
+                position: static;
+            }
+            
+            .section {
+                padding: 2rem 5%;
+            }
+            
+            .properties-grid {
+                display: block;
+            }
+            
+            .property-card {
+                break-inside: avoid;
+                margin-bottom: 2rem;
+            }
+            
+            footer {
+                background: none;
+                color: var(--text-primary);
+            }
+            
+            .footer-section a {
+                color: var(--text-primary);
             }
         }
     </style>
@@ -1424,6 +2269,8 @@
                 <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#properties"><i class="fas fa-building"></i> Properties</a></li>
                 <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#agents"><i class="fas fa-user-tie"></i> Agents</a></li>
+                <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
                 <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
             </ul>
             
@@ -1543,8 +2390,111 @@
         </div>
     </section>
 
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&fit=crop&auto=format" alt="Luxe Estate Team" class="about-image" loading="lazy">
+                <div class="about-badge">Since 1998</div>
+            </div>
+            <div class="about-content">
+                <div class="about-subtitle"><i class="fas fa-history"></i> Our Legacy</div>
+                <h2 class="about-title">Redefining Luxury Real Estate in Nigeria</h2>
+                <p class="about-description">
+                    For over two decades, Luxe Estate has been at the forefront of Nigeria's luxury real estate market. 
+                    Our commitment to excellence, discretion, and unparalleled service has made us the preferred choice 
+                    for discerning clients seeking exceptional properties.
+                </p>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="value-content">
+                            <h4>Discretion</h4>
+                            <p>Confidentiality and privacy are paramount in all our transactions.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><i class="fas fa-gem"></i></div>
+                        <div class="value-content">
+                            <h4>Excellence</h4>
+                            <p>We maintain the highest standards in every aspect of our service.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                        <div class="value-content">
+                            <h4>Trust</h4>
+                            <p>Building lasting relationships based on integrity and transparency.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><i class="fas fa-globe-africa"></i></div>
+                        <div class="value-content">
+                            <h4>Expertise</h4>
+                            <p>Deep understanding of Nigeria's premium real estate market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Slider -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <div class="section-subtitle"><i class="fas fa-concierge-bell"></i> Premium Services</div>
+            <h2 class="section-title">Comprehensive Luxury Solutions</h2>
+            <p class="section-description">
+                Beyond property transactions, we provide end-to-end luxury real estate services
+            </p>
+        </div>
+        <div class="services-slider-container">
+            <div class="services-slider" id="servicesSlider">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+                    <h3>Property Acquisition</h3>
+                    <p>Strategic property search, negotiation, and acquisition services for premium real estate investments.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Portfolio Management</h3>
+                    <p>Comprehensive management of luxury property portfolios with data-driven investment strategies.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>VIP Concierge</h3>
+                    <p>Personalized services including interior design, security, and lifestyle management for elite clients.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Legal Advisory</h3>
+                    <p>Expert legal guidance for property transactions, contracts, and regulatory compliance.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3>Property Management</h3>
+                    <p>Complete property maintenance, tenant management, and asset optimization services.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="servicesPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="servicesNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-dots" id="servicesDots"></div>
+        </div>
+    </section>
+
     <!-- Properties Section -->
-    <section class="section" id="properties">
+    <section class="properties-section" id="properties">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-gem"></i> Featured Collection</div>
             <h2 class="section-title">Exclusive Properties</h2>
@@ -1566,6 +2516,271 @@
         </div>
 
         <div class="properties-grid" id="propertiesGrid"></div>
+    </section>
+
+    <!-- Agents Section with Slider -->
+    <section class="agents-section" id="agents">
+        <div class="section-header">
+            <div class="section-subtitle"><i class="fas fa-user-tie"></i> Elite Team</div>
+            <h2 class="section-title">Meet Our Luxury Specialists</h2>
+            <p class="section-description">
+                Our team of experienced professionals dedicated to exceptional service
+            </p>
+        </div>
+        <div class="agents-slider-container">
+            <div class="agents-slider" id="agentsSlider">
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80&fit=crop&auto=format" alt="Chinedu Okoro" class="agent-image" loading="lazy">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Chinedu Okoro</h3>
+                        <p class="agent-title">Senior Partner</p>
+                        <p>25+ years in luxury real estate, specializing in high-net-worth client acquisitions.</p>
+                        <div class="agent-contact">
+                            <a href="tel:+2349012345678"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:chinedu@luxeestate.ng"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&fit=crop&auto=format" alt="Amina Bello" class="agent-image" loading="lazy">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Amina Bello</h3>
+                        <p class="agent-title">Luxury Portfolio Director</p>
+                        <p>Expert in luxury property management and international client relations.</p>
+                        <div class="agent-contact">
+                            <a href="tel:+2349012345679"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:amina@luxeestate.ng"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&fit=crop&auto=format" alt="Tunde Adekunle" class="agent-image" loading="lazy">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Tunde Adekunle</h3>
+                        <p class="agent-title">Investment Strategist</p>
+                        <p>Specializing in real estate investment analysis and portfolio optimization.</p>
+                        <div class="agent-contact">
+                            <a href="tel:+2349012345680"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:tunde@luxeestate.ng"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80&fit=crop&auto=format" alt="Chioma Nwachukwu" class="agent-image" loading="lazy">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Chioma Nwachukwu</h3>
+                        <p class="agent-title">Legal Advisor</p>
+                        <p>Expert in property law, contracts, and regulatory compliance for luxury real estate.</p>
+                        <div class="agent-contact">
+                            <a href="tel:+2349012345681"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:chioma@luxeestate.ng"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="agentsPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="agentsNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-dots" id="agentsDots"></div>
+        </div>
+    </section>
+
+    <!-- Neighborhoods Section with Slider -->
+    <section class="neighborhoods-section">
+        <div class="section-header">
+            <div class="section-subtitle"><i class="fas fa-map-marker-alt"></i> Premium Locations</div>
+            <h2 class="section-title">Exclusive Nigerian Neighborhoods</h2>
+            <p class="section-description">
+                Discover Nigeria's most sought-after luxury residential areas
+            </p>
+        </div>
+        <div class="neighborhoods-slider-container">
+            <div class="neighborhoods-slider" id="neighborhoodsSlider">
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80&fit=crop&auto=format" alt="Banana Island" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">Banana Island</h3>
+                        <p>Lagos' most exclusive artificial island community</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦2B+ Average</span>
+                            <span><i class="fas fa-shield-alt"></i> 24/7 Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=900&q=90&fit=crop&auto=format" alt="Maitama" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">Maitama</h3>
+                        <p>Abuja's premier diplomatic and residential district</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦1.5B+ Average</span>
+                            <span><i class="fas fa-tree"></i> Lush Greenery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=600&q=80&fit=crop&auto=format" alt="Victoria Island" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">Victoria Island</h3>
+                        <p>Lagos' commercial hub with luxury waterfront properties</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦800M+ Average</span>
+                            <span><i class="fas fa-water"></i> Ocean Views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80&fit=crop&auto=format" alt="GRA Port Harcourt" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">GRA Port Harcourt</h3>
+                        <p>Prestigious government residential area with sprawling estates</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦600M+ Average</span>
+                            <span><i class="fas fa-landmark"></i> Heritage Properties</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&q=80&fit=crop&auto=format" alt="Asokoro" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">Asokoro</h3>
+                        <p>Abuja's elite residential area with diplomatic enclaves</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦1.2B+ Average</span>
+                            <span><i class="fas fa-star"></i> Diplomatic Zone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="neighborhoodsPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="neighborhoodsNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-dots" id="neighborhoodsDots"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section with Enhanced Slider -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <div class="section-subtitle"><i class="fas fa-star"></i> Client Testimonials</div>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-description">
+                Trusted by Nigeria's most discerning property owners and investors
+            </p>
+        </div>
+        <div class="testimonials-slider-container">
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        Luxe Estate transformed our property search into an exceptional experience. 
+                        Their discretion and expertise in handling our Banana Island acquisition was unparalleled.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&auto=format" alt="Chief Adebayo" class="author-image" loading="lazy">
+                        <div class="author-info">
+                            <h4>Chief Adebayo</h4>
+                            <p>Business Executive</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        As an international investor, I needed a partner who understood both luxury 
+                        and the Nigerian market. Luxe Estate delivered beyond expectations.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&fit=crop&auto=format" alt="Sarah Johnson" class="author-image" loading="lazy">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>International Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        The portfolio management service has optimized our real estate investments 
+                        significantly. Professional, responsive, and highly knowledgeable team.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80&fit=crop&auto=format" alt="Dr. Okafor" class="author-image" loading="lazy">
+                        <div class="author-info">
+                            <h4>Dr. Okafor</h4>
+                            <p>Medical Director</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        Their attention to detail and market insight helped us secure a prime property 
+                        at the best possible value. Truly exceptional service.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&fit=crop&auto=format" alt="Mrs. Adeyemi" class="author-image" loading="lazy">
+                        <div class="author-info">
+                            <h4>Mrs. Adeyemi</h4>
+                            <p>Luxury Home Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="testimonialsPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="testimonialsNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-dots" id="testimonialsDots"></div>
+        </div>
+    </section>
+
+    <!-- Partners Section with Slider -->
+    <section class="partners-section">
+        <div class="section-header">
+            <div class="section-subtitle"><i class="fas fa-handshake"></i> Trusted Partners</div>
+            <h2 class="section-title">Our Luxury Network</h2>
+            <p class="section-description">
+                Collaborating with premier brands to deliver exceptional service
+            </p>
+        </div>
+        <div class="partners-slider-container">
+            <div class="partners-slider" id="partnersSlider">
+                <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=200&q=80&fit=crop&auto=format" alt="Premium Bank" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&q=80&fit=crop&auto=format" alt="Luxury Security" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&q=80&fit=crop&auto=format" alt="Interior Design" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=200&q=80&fit=crop&auto=format" alt="Legal Partners" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=200&q=80&fit=crop&auto=format" alt="Property Insurance" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&q=80&fit=crop&auto=format" alt="Architecture Firm" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=200&q=80&fit=crop&auto=format" alt="Wealth Management" class="partner-logo" loading="lazy">
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="partnersPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" id="partnersNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
     </section>
 
     <!-- Modal -->
@@ -1631,6 +2846,7 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="footer-section">
@@ -1639,16 +2855,18 @@
                     <li><i class="fas fa-chevron-right"></i> <a href="#home">Home</a></li>
                     <li><i class="fas fa-chevron-right"></i> <a href="#properties">Properties</a></li>
                     <li><i class="fas fa-chevron-right"></i> <a href="#about">About Us</a></li>
-                    <li><i class="fas fa-chevron-right"></i> <a href="#contact">Contact</a></li>
+                    <li><i class="fas fa-chevron-right"></i> <a href="#agents">Our Agents</a></li>
+                    <li><i class="fas fa-chevron-right"></i> <a href="#services">Services</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3><i class="fas fa-concierge-bell"></i> Services</h3>
                 <ul>
-                    <li><i class="fas fa-search"></i> <a href="#">Property Search</a></li>
-                    <li><i class="fas fa-chart-line"></i> <a href="#">Market Analysis</a></li>
-                    <li><i class="fas fa-handshake"></i> <a href="#">Property Management</a></li>
-                    <li><i class="fas fa-gavel"></i> <a href="#">Legal Services</a></li>
+                    <li><i class="fas fa-search"></i> <a href="#properties">Property Search</a></li>
+                    <li><i class="fas fa-chart-line"></i> <a href="#services">Portfolio Management</a></li>
+                    <li><i class="fas fa-user-tie"></i> <a href="#services">VIP Concierge</a></li>
+                    <li><i class="fas fa-gavel"></i> <a href="#services">Legal Services</a></li>
+                    <li><i class="fas fa-search-dollar"></i> <a href="#services">Property Acquisition</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1658,6 +2876,7 @@
                     <li><i class="fas fa-phone"></i> <a href="tel:+2349012345678">+234 901 234 5678</a></li>
                     <li><i class="fas fa-map-marker-alt"></i> <a href="#">Victoria Island, Lagos</a></li>
                     <li><i class="fas fa-clock"></i> Mon - Fri: 9AM - 6PM</li>
+                    <li><i class="fas fa-clock"></i> Sat: 10AM - 4PM</li>
                 </ul>
             </div>
         </div>
@@ -1819,10 +3038,60 @@
         let darkMode = false;
         let isMobileMenuOpen = false;
 
+        // Slider instances
+        const sliders = {
+            services: {
+                element: null,
+                prevBtn: null,
+                nextBtn: null,
+                dots: null,
+                currentSlide: 0,
+                totalSlides: 0,
+                slidesPerView: 3
+            },
+            agents: {
+                element: null,
+                prevBtn: null,
+                nextBtn: null,
+                dots: null,
+                currentSlide: 0,
+                totalSlides: 0,
+                slidesPerView: 3
+            },
+            neighborhoods: {
+                element: null,
+                prevBtn: null,
+                nextBtn: null,
+                dots: null,
+                currentSlide: 0,
+                totalSlides: 0,
+                slidesPerView: 3
+            },
+            testimonials: {
+                element: null,
+                prevBtn: null,
+                nextBtn: null,
+                dots: null,
+                currentSlide: 0,
+                totalSlides: 0,
+                slidesPerView: 1
+            },
+            partners: {
+                element: null,
+                prevBtn: null,
+                nextBtn: null,
+                currentSlide: 0,
+                totalSlides: 0,
+                slidesPerView: 5
+            }
+        };
+
         function init() {
             loadThemePreference();
             displayProperties(properties);
             setupEventListeners();
+            initializeSliders();
+            setupResponsiveBehavior();
         }
 
         function loadThemePreference() {
@@ -2066,6 +3335,204 @@
                 isMobileMenuOpen = false;
                 document.body.style.overflow = 'auto';
             }
+        }
+
+        function initializeSliders() {
+            // Initialize all sliders
+            Object.keys(sliders).forEach(sliderKey => {
+                const slider = sliders[sliderKey];
+                slider.element = document.getElementById(`${sliderKey}Slider`);
+                slider.prevBtn = document.getElementById(`${sliderKey}Prev`);
+                slider.nextBtn = document.getElementById(`${sliderKey}Next`);
+                
+                if (slider.element) {
+                    slider.totalSlides = slider.element.children.length;
+                    
+                    // Create dots for sliders that need them
+                    if (sliderKey !== 'partners') {
+                        slider.dots = document.getElementById(`${sliderKey}Dots`);
+                        if (slider.dots) {
+                            createDots(slider);
+                        }
+                    }
+                    
+                    // Add event listeners for buttons
+                    if (slider.prevBtn) {
+                        slider.prevBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide - 1));
+                    }
+                    if (slider.nextBtn) {
+                        slider.nextBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide + 1));
+                    }
+                    
+                    // Initialize slider
+                    updateSlider(sliderKey);
+                    
+                    // Add touch support
+                    addTouchSupport(sliderKey);
+                }
+            });
+            
+            // Auto-advance testimonials slider
+            setInterval(() => {
+                const slider = sliders.testimonials;
+                if (slider.element && slider.totalSlides > 1) {
+                    slideTo('testimonials', (slider.currentSlide + 1) % slider.totalSlides);
+                }
+            }, 5000);
+        }
+
+        function createDots(slider) {
+            slider.dots.innerHTML = '';
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const totalDots = Math.ceil(slider.totalSlides / slidesPerView);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot';
+                if (i === Math.floor(slider.currentSlide / slidesPerView)) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    slideTo(slider.element.id.replace('Slider', ''), i * slidesPerView);
+                });
+                slider.dots.appendChild(dot);
+            }
+        }
+
+        function getSlidesPerView(sliderId) {
+            const width = window.innerWidth;
+            const sliderKey = sliderId.replace('Slider', '');
+            
+            if (width < 768) {
+                return 1;
+            } else if (width < 1200) {
+                if (sliderKey === 'testimonials') return 1;
+                return 2;
+            } else {
+                if (sliderKey === 'testimonials') return 1;
+                if (sliderKey === 'partners') return 5;
+                return 3;
+            }
+        }
+
+        function slideTo(sliderKey, index) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const maxSlide = slider.totalSlides - slidesPerView;
+            
+            // Handle wrap-around for testimonials
+            if (sliderKey === 'testimonials') {
+                if (index >= slider.totalSlides) index = 0;
+                if (index < 0) index = slider.totalSlides - 1;
+            } else {
+                // For other sliders, clamp to boundaries
+                index = Math.max(0, Math.min(index, maxSlide));
+            }
+            
+            slider.currentSlide = index;
+            
+            // Calculate scroll position
+            const slideWidth = slider.element.children[0].offsetWidth + 
+                             parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+            const scrollPosition = index * slideWidth;
+            
+            slider.element.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            
+            updateSlider(sliderKey);
+        }
+
+        function updateSlider(sliderKey) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const maxSlide = slider.totalSlides - slidesPerView;
+            
+            // Update button states
+            if (slider.prevBtn) {
+                slider.prevBtn.disabled = slider.currentSlide === 0;
+            }
+            if (slider.nextBtn) {
+                if (sliderKey === 'testimonials') {
+                    slider.nextBtn.disabled = false; // Always enabled for wrap-around
+                } else {
+                    slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
+                }
+            }
+            
+            // Update dots
+            if (slider.dots) {
+                const dots = slider.dots.querySelectorAll('.slider-dot');
+                const activeDotIndex = Math.floor(slider.currentSlide / slidesPerView);
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDotIndex);
+                });
+            }
+        }
+
+        function addTouchSupport(sliderKey) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            let startX;
+            let scrollLeft;
+            let isDragging = false;
+            
+            slider.element.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - slider.element.offsetLeft;
+                scrollLeft = slider.element.scrollLeft;
+                isDragging = true;
+            });
+            
+            slider.element.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - slider.element.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.element.scrollLeft = scrollLeft - walk;
+            });
+            
+            slider.element.addEventListener('touchend', () => {
+                isDragging = false;
+                // Snap to nearest slide
+                const slideWidth = slider.element.children[0].offsetWidth + 
+                                 parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+                const newSlide = Math.round(slider.element.scrollLeft / slideWidth);
+                slideTo(sliderKey, newSlide);
+            });
+        }
+
+        function setupResponsiveBehavior() {
+            // Update sliders on window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    Object.keys(sliders).forEach(sliderKey => {
+                        updateSlider(sliderKey);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
+                        }
+                    });
+                }, 250);
+            });
+            
+            // Handle orientation change
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    Object.keys(sliders).forEach(sliderKey => {
+                        updateSlider(sliderKey);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
+                        }
+                    });
+                }, 300);
+            });
         }
 
         function setupEventListeners() {
