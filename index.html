@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* All CSS styles remain exactly the same as in the original code */
         :root {
             --bg-primary: #F9F7F4;
             --bg-secondary: #FFFFFF;
@@ -598,7 +597,7 @@
             opacity: 0.9;
         }
 
-        /* About Us Section */
+        /* NEW: About Us Section */
         .about-section {
             padding: 6rem 5%;
             background: var(--bg-secondary);
@@ -712,7 +711,7 @@
             line-height: 1.6;
         }
 
-        /* Services Section with Slider */
+        /* NEW: Services Section with Slider */
         .services-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -859,7 +858,7 @@
             transform: scale(1.2);
         }
 
-        /* Agents Section with Slider */
+        /* NEW: Agents Section with Slider */
         .agents-section {
             padding: 6rem 5%;
             background: var(--bg-secondary);
@@ -956,7 +955,7 @@
             transform: translateY(-2px);
         }
 
-        /* Neighborhoods Section with Slider */
+        /* NEW: Neighborhoods Section with Slider */
         .neighborhoods-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -1029,7 +1028,7 @@
             opacity: 0.9;
         }
 
-        /* Testimonials Section with Enhanced Slider */
+        /* NEW: Testimonials Section with Enhanced Slider */
         .testimonials-section {
             padding: 6rem 5%;
             background: var(--gradient-dark);
@@ -1107,7 +1106,7 @@
             opacity: 0.8;
         }
 
-        /* Partners Section with Slider */
+        /* NEW: Partners Section with Slider */
         .partners-section {
             padding: 5rem 5%;
             background: var(--bg-secondary);
@@ -2291,11 +2290,9 @@
         <button class="floating-btn currency-toggle-floating" onclick="toggleCurrency()">
             <i class="fas fa-exchange-alt"></i>
         </button>
-        <!--
         <button class="floating-btn theme-toggle-floating" onclick="toggleTheme()">
             <i class="fas fa-moon"></i>
         </button>
-        -->
     </div>
 
     <!-- Hero Section -->
@@ -3385,8 +3382,6 @@
         }
 
         function createDots(slider) {
-            if (!slider.dots) return;
-            
             slider.dots.innerHTML = '';
             const slidesPerView = getSlidesPerView(slider.element.id);
             const totalDots = Math.ceil(slider.totalSlides / slidesPerView);
@@ -3398,8 +3393,7 @@
                     dot.classList.add('active');
                 }
                 dot.addEventListener('click', () => {
-                    const sliderKey = slider.element.id.replace('Slider', '');
-                    slideTo(sliderKey, i * slidesPerView);
+                    slideTo(slider.element.id.replace('Slider', ''), i * slidesPerView);
                 });
                 slider.dots.appendChild(dot);
             }
@@ -3413,7 +3407,6 @@
                 return 1;
             } else if (width < 1200) {
                 if (sliderKey === 'testimonials') return 1;
-                if (sliderKey === 'partners') return 3;
                 return 2;
             } else {
                 if (sliderKey === 'testimonials') return 1;
@@ -3427,25 +3420,28 @@
             if (!slider.element) return;
             
             const slidesPerView = getSlidesPerView(slider.element.id);
-            const maxSlide = Math.max(0, slider.totalSlides - slidesPerView);
+            const maxSlide = slider.totalSlides - slidesPerView;
             
-            // Clamp index to valid range
-            index = Math.max(0, Math.min(index, maxSlide));
+            // Handle wrap-around for testimonials
+            if (sliderKey === 'testimonials') {
+                if (index >= slider.totalSlides) index = 0;
+                if (index < 0) index = slider.totalSlides - 1;
+            } else {
+                // For other sliders, clamp to boundaries
+                index = Math.max(0, Math.min(index, maxSlide));
+            }
+            
             slider.currentSlide = index;
             
             // Calculate scroll position
-            if (slider.element.children.length > 0) {
-                const slide = slider.element.children[0];
-                const computedStyle = getComputedStyle(slide);
-                const slideWidth = slide.offsetWidth + 
-                                 parseInt(computedStyle.marginRight || 0);
-                const scrollPosition = index * slideWidth;
-                
-                slider.element.scrollTo({
-                    left: scrollPosition,
-                    behavior: 'smooth'
-                });
-            }
+            const slideWidth = slider.element.children[0].offsetWidth + 
+                             parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+            const scrollPosition = index * slideWidth;
+            
+            slider.element.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
             
             updateSlider(sliderKey);
         }
@@ -3455,14 +3451,18 @@
             if (!slider.element) return;
             
             const slidesPerView = getSlidesPerView(slider.element.id);
-            const maxSlide = Math.max(0, slider.totalSlides - slidesPerView);
+            const maxSlide = slider.totalSlides - slidesPerView;
             
             // Update button states
             if (slider.prevBtn) {
                 slider.prevBtn.disabled = slider.currentSlide === 0;
             }
             if (slider.nextBtn) {
-                slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
+                if (sliderKey === 'testimonials') {
+                    slider.nextBtn.disabled = false; // Always enabled for wrap-around
+                } else {
+                    slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
+                }
             }
             
             // Update dots
@@ -3479,15 +3479,15 @@
             const slider = sliders[sliderKey];
             if (!slider.element) return;
             
-            let startX = 0;
-            let scrollLeft = 0;
+            let startX;
+            let scrollLeft;
             let isDragging = false;
             
             slider.element.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].pageX - slider.element.offsetLeft;
                 scrollLeft = slider.element.scrollLeft;
                 isDragging = true;
-            }, { passive: true });
+            });
             
             slider.element.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
@@ -3495,21 +3495,15 @@
                 const x = e.touches[0].pageX - slider.element.offsetLeft;
                 const walk = (x - startX) * 2;
                 slider.element.scrollLeft = scrollLeft - walk;
-            }, { passive: false });
+            });
             
             slider.element.addEventListener('touchend', () => {
-                if (!isDragging) return;
                 isDragging = false;
-                
                 // Snap to nearest slide
-                if (slider.element.children.length > 0) {
-                    const slide = slider.element.children[0];
-                    const computedStyle = getComputedStyle(slide);
-                    const slideWidth = slide.offsetWidth + 
-                                     parseInt(computedStyle.marginRight || 0);
-                    const newSlide = Math.round(slider.element.scrollLeft / slideWidth);
-                    slideTo(sliderKey, newSlide);
-                }
+                const slideWidth = slider.element.children[0].offsetWidth + 
+                                 parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+                const newSlide = Math.round(slider.element.scrollLeft / slideWidth);
+                slideTo(sliderKey, newSlide);
             });
         }
 
@@ -3520,14 +3514,9 @@
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
                     Object.keys(sliders).forEach(sliderKey => {
-                        const slider = sliders[sliderKey];
-                        if (slider.element) {
-                            slider.currentSlide = 0;
-                            slider.element.scrollLeft = 0;
-                            updateSlider(sliderKey);
-                            if (slider.dots) {
-                                createDots(slider);
-                            }
+                        updateSlider(sliderKey);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
                         }
                     });
                 }, 250);
@@ -3538,9 +3527,8 @@
                 setTimeout(() => {
                     Object.keys(sliders).forEach(sliderKey => {
                         updateSlider(sliderKey);
-                        const slider = sliders[sliderKey];
-                        if (slider.dots) {
-                            createDots(slider);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
                         }
                     });
                 }, 300);
@@ -3604,24 +3592,6 @@
                     closeModal();
                 }
             });
-            
-            // Handle slider scroll events
-            Object.keys(sliders).forEach(sliderKey => {
-                const slider = sliders[sliderKey];
-                if (slider.element) {
-                    slider.element.addEventListener('scroll', () => {
-                        // Update current slide based on scroll position
-                        if (slider.element.children.length > 0) {
-                            const slide = slider.element.children[0];
-                            const computedStyle = getComputedStyle(slide);
-                            const slideWidth = slide.offsetWidth + 
-                                             parseInt(computedStyle.marginRight || 0);
-                            slider.currentSlide = Math.round(slider.element.scrollLeft / slideWidth);
-                            updateSlider(sliderKey);
-                        }
-                    }, { passive: true });
-                }
-            });
         }
 
         function listProperty() {
@@ -3640,7 +3610,6 @@
             closeModal();
         }
 
-        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
