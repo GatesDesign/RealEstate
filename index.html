@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* All CSS styles remain exactly the same as in the original code */
         :root {
             --bg-primary: #F9F7F4;
             --bg-secondary: #FFFFFF;
@@ -712,7 +711,7 @@
             line-height: 1.6;
         }
 
-        /* Services Section with Slider */
+        /* Services Section with Horizontal Scroll */
         .services-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -720,13 +719,13 @@
             overflow: hidden;
         }
 
-        .services-slider-container {
+        .services-scroll-container {
             max-width: 1600px;
             margin: 0 auto;
             position: relative;
         }
 
-        .services-slider {
+        .services-scroll {
             display: flex;
             gap: 2.5rem;
             overflow-x: auto;
@@ -734,14 +733,16 @@
             scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
         }
 
-        .services-slider::-webkit-scrollbar {
+        .services-scroll::-webkit-scrollbar {
             display: none;
         }
 
         .service-card {
-            flex: 0 0 calc(33.333% - 1.67rem);
+            flex: 0 0 auto;
+            width: 350px;
             background: var(--bg-secondary);
             padding: 3rem 2rem;
             border-radius: 12px;
@@ -754,6 +755,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            scroll-snap-align: start;
         }
 
         .service-card:hover {
@@ -805,61 +807,28 @@
             gap: 10px;
         }
 
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .slider-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all var(--transition-speed) var(--transition-ease);
+        /* Scroll indicator */
+        .scroll-indicator {
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .slider-btn:hover:not(:disabled) {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-            transform: scale(1.1);
-        }
-
-        .slider-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 1rem;
             margin-top: 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
         }
 
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border-color);
-            cursor: pointer;
-            transition: all var(--transition-speed) var(--transition-ease);
+        .scroll-indicator i {
+            animation: bounce 2s infinite;
         }
 
-        .slider-dot.active {
-            background: var(--accent-primary);
-            transform: scale(1.2);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+            40% {transform: translateX(5px);}
+            60% {transform: translateX(3px);}
         }
 
-        /* Agents Section with Slider */
+        /* Agents Section with Horizontal Scroll */
         .agents-section {
             padding: 6rem 5%;
             background: var(--bg-secondary);
@@ -867,13 +836,13 @@
             overflow: hidden;
         }
 
-        .agents-slider-container {
+        .agents-scroll-container {
             max-width: 1600px;
             margin: 0 auto;
             position: relative;
         }
 
-        .agents-slider {
+        .agents-scroll {
             display: flex;
             gap: 2.5rem;
             overflow-x: auto;
@@ -881,14 +850,16 @@
             scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
         }
 
-        .agents-slider::-webkit-scrollbar {
+        .agents-scroll::-webkit-scrollbar {
             display: none;
         }
 
         .agent-card {
-            flex: 0 0 calc(33.333% - 1.67rem);
+            flex: 0 0 auto;
+            width: 350px;
             background: var(--bg-primary);
             border-radius: 12px;
             overflow: hidden;
@@ -896,6 +867,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 8px 25px var(--shadow-color);
             min-height: 450px;
+            scroll-snap-align: start;
         }
 
         .agent-card:hover {
@@ -956,7 +928,7 @@
             transform: translateY(-2px);
         }
 
-        /* Neighborhoods Section with Slider */
+        /* Neighborhoods Section with Horizontal Scroll */
         .neighborhoods-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -964,13 +936,13 @@
             overflow: hidden;
         }
 
-        .neighborhoods-slider-container {
+        .neighborhoods-scroll-container {
             max-width: 1600px;
             margin: 0 auto;
             position: relative;
         }
 
-        .neighborhoods-slider {
+        .neighborhoods-scroll {
             display: flex;
             gap: 2rem;
             overflow-x: auto;
@@ -978,20 +950,22 @@
             scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
         }
 
-        .neighborhoods-slider::-webkit-scrollbar {
+        .neighborhoods-scroll::-webkit-scrollbar {
             display: none;
         }
 
         .neighborhood-card {
-            flex: 0 0 calc(33.333% - 1.33rem);
+            flex: 0 0 auto;
+            width: 400px;
             position: relative;
             border-radius: 12px;
             overflow: hidden;
             height: 400px;
             cursor: pointer;
-            min-width: 300px;
+            scroll-snap-align: start;
         }
 
         .neighborhood-image {
@@ -1029,7 +1003,7 @@
             opacity: 0.9;
         }
 
-        /* Testimonials Section with Enhanced Slider */
+        /* Testimonials Section with Horizontal Scroll */
         .testimonials-section {
             padding: 6rem 5%;
             background: var(--gradient-dark);
@@ -1038,13 +1012,13 @@
             overflow: hidden;
         }
 
-        .testimonials-slider-container {
+        .testimonials-scroll-container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
         }
 
-        .testimonials-slider {
+        .testimonials-scroll {
             display: flex;
             gap: 2rem;
             overflow-x: auto;
@@ -1052,20 +1026,23 @@
             scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
         }
 
-        .testimonials-slider::-webkit-scrollbar {
+        .testimonials-scroll::-webkit-scrollbar {
             display: none;
         }
 
         .testimonial-card {
-            flex: 0 0 350px;
+            flex: 0 0 auto;
+            width: 400px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 2.5rem;
             border-radius: 12px;
             border: 1px solid rgba(212, 175, 55, 0.2);
             min-height: 320px;
+            scroll-snap-align: start;
         }
 
         .testimonial-quote {
@@ -1107,7 +1084,7 @@
             opacity: 0.8;
         }
 
-        /* Partners Section with Slider */
+        /* Partners Section with Horizontal Scroll */
         .partners-section {
             padding: 5rem 5%;
             background: var(--bg-secondary);
@@ -1115,13 +1092,13 @@
             overflow: hidden;
         }
 
-        .partners-slider-container {
+        .partners-scroll-container {
             max-width: 1600px;
             margin: 0 auto;
             position: relative;
         }
 
-        .partners-slider {
+        .partners-scroll {
             display: flex;
             gap: 4rem;
             overflow-x: auto;
@@ -1130,20 +1107,22 @@
             padding: 2rem 0.5rem;
             -ms-overflow-style: none;
             align-items: center;
+            scroll-snap-type: x mandatory;
         }
 
-        .partners-slider::-webkit-scrollbar {
+        .partners-scroll::-webkit-scrollbar {
             display: none;
         }
 
         .partner-logo {
-            flex: 0 0 180px;
+            flex: 0 0 auto;
+            width: 180px;
+            height: 80px;
             filter: grayscale(100%);
             opacity: 0.7;
             transition: all var(--transition-speed) var(--transition-ease);
-            max-width: 150px;
-            height: 80px;
             object-fit: contain;
+            scroll-snap-align: center;
         }
 
         .partner-logo:hover {
@@ -1743,7 +1722,7 @@
             .service-card,
             .agent-card,
             .neighborhood-card {
-                flex: 0 0 calc(50% - 1.25rem);
+                width: 320px;
             }
         }
 
@@ -1763,11 +1742,15 @@
             
             .service-card,
             .agent-card {
-                flex: 0 0 calc(50% - 1.25rem);
+                width: 300px;
             }
             
             .neighborhood-card {
-                flex: 0 0 calc(50% - 1rem);
+                width: 350px;
+            }
+            
+            .testimonial-card {
+                width: 350px;
             }
         }
 
@@ -1801,13 +1784,16 @@
             }
             
             .service-card,
-            .agent-card,
+            .agent-card {
+                width: 280px;
+            }
+            
             .neighborhood-card {
-                flex: 0 0 calc(100% - 1rem);
+                width: 320px;
             }
             
             .testimonial-card {
-                flex: 0 0 300px;
+                width: 300px;
             }
         }
 
@@ -1887,22 +1873,24 @@
             }
             
             .service-card,
-            .agent-card,
-            .neighborhood-card,
+            .agent-card {
+                width: 260px;
+                min-height: auto;
+                padding: 2rem 1.5rem;
+            }
+            
+            .neighborhood-card {
+                width: 280px;
+                height: 350px;
+            }
+            
             .testimonial-card {
-                flex: 0 0 100%;
-            }
-            
-            .slider-controls {
-                display: none;
-            }
-            
-            .partners-slider {
-                gap: 2rem;
+                width: 280px;
+                padding: 2rem;
             }
             
             .partner-logo {
-                flex: 0 0 120px;
+                width: 140px;
                 height: 60px;
             }
         }
@@ -1973,8 +1961,8 @@
             
             .service-card,
             .agent-card {
-                min-height: auto;
-                padding: 2rem 1.5rem;
+                width: 240px;
+                padding: 1.5rem;
             }
             
             .agent-image {
@@ -1982,6 +1970,7 @@
             }
             
             .neighborhood-card {
+                width: 240px;
                 height: 300px;
             }
             
@@ -1995,12 +1984,17 @@
             }
             
             .testimonial-card {
+                width: 240px;
                 padding: 1.5rem;
-                min-height: auto;
             }
             
             .testimonial-text {
                 font-size: 1rem;
+            }
+            
+            .partner-logo {
+                width: 120px;
+                height: 50px;
             }
         }
 
@@ -2060,6 +2054,13 @@
                 flex-direction: column;
                 text-align: center;
             }
+            
+            .service-card,
+            .agent-card,
+            .neighborhood-card,
+            .testimonial-card {
+                width: 220px;
+            }
         }
 
         @media (min-width: 768px) and (max-height: 900px) {
@@ -2070,9 +2071,12 @@
 
         @media (min-width: 1600px) {
             .service-card,
-            .agent-card,
+            .agent-card {
+                width: 380px;
+            }
+            
             .neighborhood-card {
-                flex: 0 0 calc(25% - 1.88rem);
+                width: 450px;
             }
         }
 
@@ -2111,6 +2115,15 @@
             .hero-title {
                 font-size: 5rem;
             }
+            
+            .service-card,
+            .agent-card {
+                width: 400px;
+            }
+            
+            .neighborhood-card {
+                width: 500px;
+            }
         }
 
         /* Reduced Motion */
@@ -2125,11 +2138,11 @@
                 animation: none !important;
             }
             
-            .services-slider,
-            .agents-slider,
-            .neighborhoods-slider,
-            .testimonials-slider,
-            .partners-slider {
+            .services-scroll,
+            .agents-scroll,
+            .neighborhoods-scroll,
+            .testimonials-scroll,
+            .partners-scroll {
                 scroll-behavior: auto;
             }
         }
@@ -2174,10 +2187,6 @@
                 min-height: auto;
             }
             
-            .slider-controls {
-                display: flex;
-            }
-            
             /* Improve touch targets */
             .nav-menu a,
             .filter-tab,
@@ -2205,8 +2214,7 @@
             .nav-wrapper,
             .floating-controls,
             .search-section,
-            .slider-controls,
-            .slider-dots {
+            .scroll-indicator {
                 display: none;
             }
             
@@ -2244,6 +2252,31 @@
             
             .footer-section a {
                 color: var(--text-primary);
+            }
+            
+            /* For horizontal scroll sections in print */
+            .services-scroll,
+            .agents-scroll,
+            .neighborhoods-scroll,
+            .testimonials-scroll,
+            .partners-scroll {
+                display: block;
+                overflow: visible;
+            }
+            
+            .service-card,
+            .agent-card,
+            .neighborhood-card,
+            .testimonial-card {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+                break-inside: avoid;
+            }
+            
+            .partner-logo {
+                display: inline-block;
+                margin: 0 1rem 1rem 0;
             }
         }
     </style>
@@ -2295,7 +2328,7 @@
         <button class="floating-btn theme-toggle-floating" onclick="toggleTheme()">
             <i class="fas fa-moon"></i>
         </button>
-        -->
+    -->
     </div>
 
     <!-- Hero Section -->
@@ -2442,7 +2475,7 @@
         </div>
     </section>
 
-    <!-- Services Section with Slider -->
+    <!-- Services Section with Horizontal Scroll -->
     <section class="services-section" id="services">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-concierge-bell"></i> Premium Services</div>
@@ -2451,8 +2484,8 @@
                 Beyond property transactions, we provide end-to-end luxury real estate services
             </p>
         </div>
-        <div class="services-slider-container">
-            <div class="services-slider" id="servicesSlider">
+        <div class="services-scroll-container">
+            <div class="services-scroll" id="servicesScroll">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
                     <h3>Property Acquisition</h3>
@@ -2483,16 +2516,18 @@
                     <p>Complete property maintenance, tenant management, and asset optimization services.</p>
                     <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Security Solutions</h3>
+                    <p>State-of-the-art security systems and personnel for premium properties and estates.</p>
+                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="servicesPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="servicesNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-arrow-left"></i>
+                <span>Scroll horizontally to explore</span>
+                <i class="fas fa-arrow-right"></i>
             </div>
-            <div class="slider-dots" id="servicesDots"></div>
         </div>
     </section>
 
@@ -2521,7 +2556,7 @@
         <div class="properties-grid" id="propertiesGrid"></div>
     </section>
 
-    <!-- Agents Section with Slider -->
+    <!-- Agents Section with Horizontal Scroll -->
     <section class="agents-section" id="agents">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-user-tie"></i> Elite Team</div>
@@ -2530,8 +2565,8 @@
                 Our team of experienced professionals dedicated to exceptional service
             </p>
         </div>
-        <div class="agents-slider-container">
-            <div class="agents-slider" id="agentsSlider">
+        <div class="agents-scroll-container">
+            <div class="agents-scroll" id="agentsScroll">
                 <div class="agent-card">
                     <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80&fit=crop&auto=format" alt="Chinedu Okoro" class="agent-image" loading="lazy">
                     <div class="agent-info">
@@ -2584,20 +2619,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&fit=crop&auto=format" alt="Emeka Okafor" class="agent-image" loading="lazy">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Emeka Okafor</h3>
+                        <p class="agent-title">Property Development Director</p>
+                        <p>Specializing in luxury property development and construction management.</p>
+                        <div class="agent-contact">
+                            <a href="tel:+2349012345682"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:emeka@luxeestate.ng"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="agentsPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="agentsNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-arrow-left"></i>
+                <span>Scroll horizontally to meet our team</span>
+                <i class="fas fa-arrow-right"></i>
             </div>
-            <div class="slider-dots" id="agentsDots"></div>
         </div>
     </section>
 
-    <!-- Neighborhoods Section with Slider -->
+    <!-- Neighborhoods Section with Horizontal Scroll -->
     <section class="neighborhoods-section">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-map-marker-alt"></i> Premium Locations</div>
@@ -2606,8 +2650,8 @@
                 Discover Nigeria's most sought-after luxury residential areas
             </p>
         </div>
-        <div class="neighborhoods-slider-container">
-            <div class="neighborhoods-slider" id="neighborhoodsSlider">
+        <div class="neighborhoods-scroll-container">
+            <div class="neighborhoods-scroll" id="neighborhoodsScroll">
                 <div class="neighborhood-card">
                     <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80&fit=crop&auto=format" alt="Banana Island" class="neighborhood-image" loading="lazy">
                     <div class="neighborhood-overlay">
@@ -2663,20 +2707,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="neighborhood-card">
+                    <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=600&q=80&fit=crop&auto=format" alt="Lekki Phase 1" class="neighborhood-image" loading="lazy">
+                    <div class="neighborhood-overlay">
+                        <h3 class="neighborhood-name">Lekki Phase 1</h3>
+                        <p>Lagos' upscale residential area with modern amenities</p>
+                        <div class="neighborhood-stats">
+                            <span><i class="fas fa-home"></i> ₦750M+ Average</span>
+                            <span><i class="fas fa-umbrella-beach"></i> Beach Access</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="neighborhoodsPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="neighborhoodsNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-arrow-left"></i>
+                <span>Scroll horizontally to explore locations</span>
+                <i class="fas fa-arrow-right"></i>
             </div>
-            <div class="slider-dots" id="neighborhoodsDots"></div>
         </div>
     </section>
 
-    <!-- Testimonials Section with Enhanced Slider -->
+    <!-- Testimonials Section with Horizontal Scroll -->
     <section class="testimonials-section">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-star"></i> Client Testimonials</div>
@@ -2685,8 +2736,8 @@
                 Trusted by Nigeria's most discerning property owners and investors
             </p>
         </div>
-        <div class="testimonials-slider-container">
-            <div class="testimonials-slider" id="testimonialsSlider">
+        <div class="testimonials-scroll-container">
+            <div class="testimonials-scroll" id="testimonialsScroll">
                 <div class="testimonial-card">
                     <div class="testimonial-quote">"</div>
                     <p class="testimonial-text">
@@ -2743,20 +2794,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        From property acquisition to management, Luxe Estate has been our trusted partner 
+                        for over a decade. Their service is consistently outstanding.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80&fit=crop&auto=format" alt="Mr. Hassan" class="author-image" loading="lazy">
+                        <div class="author-info">
+                            <h4>Mr. Hassan</h4>
+                            <p>Real Estate Investor</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="testimonialsPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="testimonialsNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-arrow-left"></i>
+                <span>Scroll horizontally to read testimonials</span>
+                <i class="fas fa-arrow-right"></i>
             </div>
-            <div class="slider-dots" id="testimonialsDots"></div>
         </div>
     </section>
 
-    <!-- Partners Section with Slider -->
+    <!-- Partners Section with Horizontal Scroll -->
     <section class="partners-section">
         <div class="section-header">
             <div class="section-subtitle"><i class="fas fa-handshake"></i> Trusted Partners</div>
@@ -2765,8 +2826,8 @@
                 Collaborating with premier brands to deliver exceptional service
             </p>
         </div>
-        <div class="partners-slider-container">
-            <div class="partners-slider" id="partnersSlider">
+        <div class="partners-scroll-container">
+            <div class="partners-scroll" id="partnersScroll">
                 <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=200&q=80&fit=crop&auto=format" alt="Premium Bank" class="partner-logo" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&q=80&fit=crop&auto=format" alt="Luxury Security" class="partner-logo" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&q=80&fit=crop&auto=format" alt="Interior Design" class="partner-logo" loading="lazy">
@@ -2774,14 +2835,12 @@
                 <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=200&q=80&fit=crop&auto=format" alt="Property Insurance" class="partner-logo" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&q=80&fit=crop&auto=format" alt="Architecture Firm" class="partner-logo" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=200&q=80&fit=crop&auto=format" alt="Wealth Management" class="partner-logo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=200&q=80&fit=crop&auto=format" alt="Private Aviation" class="partner-logo" loading="lazy">
             </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="partnersPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slider-btn" id="partnersNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="scroll-indicator">
+                <i class="fas fa-arrow-left"></i>
+                <span>Scroll horizontally to view partners</span>
+                <i class="fas fa-arrow-right"></i>
             </div>
         </div>
     </section>
@@ -3041,60 +3100,11 @@
         let darkMode = false;
         let isMobileMenuOpen = false;
 
-        // Slider instances
-        const sliders = {
-            services: {
-                element: null,
-                prevBtn: null,
-                nextBtn: null,
-                dots: null,
-                currentSlide: 0,
-                totalSlides: 0,
-                slidesPerView: 3
-            },
-            agents: {
-                element: null,
-                prevBtn: null,
-                nextBtn: null,
-                dots: null,
-                currentSlide: 0,
-                totalSlides: 0,
-                slidesPerView: 3
-            },
-            neighborhoods: {
-                element: null,
-                prevBtn: null,
-                nextBtn: null,
-                dots: null,
-                currentSlide: 0,
-                totalSlides: 0,
-                slidesPerView: 3
-            },
-            testimonials: {
-                element: null,
-                prevBtn: null,
-                nextBtn: null,
-                dots: null,
-                currentSlide: 0,
-                totalSlides: 0,
-                slidesPerView: 1
-            },
-            partners: {
-                element: null,
-                prevBtn: null,
-                nextBtn: null,
-                currentSlide: 0,
-                totalSlides: 0,
-                slidesPerView: 5
-            }
-        };
-
         function init() {
             loadThemePreference();
             displayProperties(properties);
             setupEventListeners();
-            initializeSliders();
-            setupResponsiveBehavior();
+            enhanceHorizontalScroll();
         }
 
         function loadThemePreference() {
@@ -3340,214 +3350,53 @@
             }
         }
 
-        function initializeSliders() {
-            // Initialize all sliders
-            Object.keys(sliders).forEach(sliderKey => {
-                const slider = sliders[sliderKey];
-                slider.element = document.getElementById(`${sliderKey}Slider`);
-                slider.prevBtn = document.getElementById(`${sliderKey}Prev`);
-                slider.nextBtn = document.getElementById(`${sliderKey}Next`);
+        function enhanceHorizontalScroll() {
+            // Add momentum scrolling for better mobile experience
+            const scrollContainers = document.querySelectorAll('.services-scroll, .agents-scroll, .neighborhoods-scroll, .testimonials-scroll, .partners-scroll');
+            
+            scrollContainers.forEach(container => {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
                 
-                if (slider.element) {
-                    slider.totalSlides = slider.element.children.length;
-                    
-                    // Create dots for sliders that need them
-                    if (sliderKey !== 'partners') {
-                        slider.dots = document.getElementById(`${sliderKey}Dots`);
-                        if (slider.dots) {
-                            createDots(slider);
-                        }
-                    }
-                    
-                    // Add event listeners for buttons
-                    if (slider.prevBtn) {
-                        slider.prevBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide - 1));
-                    }
-                    if (slider.nextBtn) {
-                        slider.nextBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide + 1));
-                    }
-                    
-                    // Initialize slider
-                    updateSlider(sliderKey);
-                    
-                    // Add touch support
-                    addTouchSupport(sliderKey);
-                }
-            });
-            
-            // Auto-advance testimonials slider
-            setInterval(() => {
-                const slider = sliders.testimonials;
-                if (slider.element && slider.totalSlides > 1) {
-                    slideTo('testimonials', (slider.currentSlide + 1) % slider.totalSlides);
-                }
-            }, 5000);
-        }
-
-        function createDots(slider) {
-            if (!slider.dots) return;
-            
-            slider.dots.innerHTML = '';
-            const slidesPerView = getSlidesPerView(slider.element.id);
-            const totalDots = Math.ceil(slider.totalSlides / slidesPerView);
-            
-            for (let i = 0; i < totalDots; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'slider-dot';
-                if (i === Math.floor(slider.currentSlide / slidesPerView)) {
-                    dot.classList.add('active');
-                }
-                dot.addEventListener('click', () => {
-                    const sliderKey = slider.element.id.replace('Slider', '');
-                    slideTo(sliderKey, i * slidesPerView);
+                container.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    container.classList.add('active');
+                    startX = e.pageX - container.offsetLeft;
+                    scrollLeft = container.scrollLeft;
                 });
-                slider.dots.appendChild(dot);
-            }
-        }
-
-        function getSlidesPerView(sliderId) {
-            const width = window.innerWidth;
-            const sliderKey = sliderId.replace('Slider', '');
-            
-            if (width < 768) {
-                return 1;
-            } else if (width < 1200) {
-                if (sliderKey === 'testimonials') return 1;
-                if (sliderKey === 'partners') return 3;
-                return 2;
-            } else {
-                if (sliderKey === 'testimonials') return 1;
-                if (sliderKey === 'partners') return 5;
-                return 3;
-            }
-        }
-
-        function slideTo(sliderKey, index) {
-            const slider = sliders[sliderKey];
-            if (!slider.element) return;
-            
-            const slidesPerView = getSlidesPerView(slider.element.id);
-            const maxSlide = Math.max(0, slider.totalSlides - slidesPerView);
-            
-            // Clamp index to valid range
-            index = Math.max(0, Math.min(index, maxSlide));
-            slider.currentSlide = index;
-            
-            // Calculate scroll position
-            if (slider.element.children.length > 0) {
-                const slide = slider.element.children[0];
-                const computedStyle = getComputedStyle(slide);
-                const slideWidth = slide.offsetWidth + 
-                                 parseInt(computedStyle.marginRight || 0);
-                const scrollPosition = index * slideWidth;
                 
-                slider.element.scrollTo({
-                    left: scrollPosition,
-                    behavior: 'smooth'
+                container.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    container.classList.remove('active');
                 });
-            }
-            
-            updateSlider(sliderKey);
-        }
-
-        function updateSlider(sliderKey) {
-            const slider = sliders[sliderKey];
-            if (!slider.element) return;
-            
-            const slidesPerView = getSlidesPerView(slider.element.id);
-            const maxSlide = Math.max(0, slider.totalSlides - slidesPerView);
-            
-            // Update button states
-            if (slider.prevBtn) {
-                slider.prevBtn.disabled = slider.currentSlide === 0;
-            }
-            if (slider.nextBtn) {
-                slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
-            }
-            
-            // Update dots
-            if (slider.dots) {
-                const dots = slider.dots.querySelectorAll('.slider-dot');
-                const activeDotIndex = Math.floor(slider.currentSlide / slidesPerView);
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === activeDotIndex);
-                });
-            }
-        }
-
-        function addTouchSupport(sliderKey) {
-            const slider = sliders[sliderKey];
-            if (!slider.element) return;
-            
-            let startX = 0;
-            let scrollLeft = 0;
-            let isDragging = false;
-            
-            slider.element.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].pageX - slider.element.offsetLeft;
-                scrollLeft = slider.element.scrollLeft;
-                isDragging = true;
-            }, { passive: true });
-            
-            slider.element.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - slider.element.offsetLeft;
-                const walk = (x - startX) * 2;
-                slider.element.scrollLeft = scrollLeft - walk;
-            }, { passive: false });
-            
-            slider.element.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
                 
-                // Snap to nearest slide
-                if (slider.element.children.length > 0) {
-                    const slide = slider.element.children[0];
-                    const computedStyle = getComputedStyle(slide);
-                    const slideWidth = slide.offsetWidth + 
-                                     parseInt(computedStyle.marginRight || 0);
-                    const newSlide = Math.round(slider.element.scrollLeft / slideWidth);
-                    slideTo(sliderKey, newSlide);
-                }
-            });
-        }
-
-        function setupResponsiveBehavior() {
-            // Update sliders on window resize
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    Object.keys(sliders).forEach(sliderKey => {
-                        const slider = sliders[sliderKey];
-                        if (slider.element) {
-                            slider.currentSlide = 0;
-                            slider.element.scrollLeft = 0;
-                            updateSlider(sliderKey);
-                            if (slider.dots) {
-                                createDots(slider);
-                            }
-                        }
-                    });
-                }, 250);
-            });
-            
-            // Handle orientation change
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    Object.keys(sliders).forEach(sliderKey => {
-                        updateSlider(sliderKey);
-                        const slider = sliders[sliderKey];
-                        if (slider.dots) {
-                            createDots(slider);
-                        }
-                    });
-                }, 300);
+                container.addEventListener('mouseup', () => {
+                    isDown = false;
+                    container.classList.remove('active');
+                });
+                
+                container.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - container.offsetLeft;
+                    const walk = (x - startX) * 2; // Multiply for faster scroll
+                    container.scrollLeft = scrollLeft - walk;
+                });
+                
+                // Add scroll snap behavior
+                container.addEventListener('scroll', () => {
+                    container.classList.add('scrolling');
+                    clearTimeout(container.scrollTimeout);
+                    container.scrollTimeout = setTimeout(() => {
+                        container.classList.remove('scrolling');
+                    }, 100);
+                });
             });
         }
 
         function setupEventListeners() {
+            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
@@ -3565,17 +3414,21 @@
                 });
             });
 
+            // Theme toggle
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.querySelector('.theme-toggle-floating').addEventListener('click', toggleTheme);
 
+            // Mobile menu toggle
             document.getElementById('menuToggle').addEventListener('click', toggleMobileMenu);
 
+            // Search form
             const searchForm = document.querySelector('.search-container');
             searchForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 filterProperties();
             });
 
+            // Close mobile menu when clicking outside
             document.addEventListener('click', (e) => {
                 const menu = document.getElementById('navMenu');
                 const toggle = document.getElementById('menuToggle');
@@ -3588,6 +3441,7 @@
                 }
             });
 
+            // Escape key to close modal and mobile menu
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (document.getElementById('propertyModal').classList.contains('active')) {
@@ -3599,27 +3453,27 @@
                 }
             });
 
+            // Close modal when clicking outside
             document.getElementById('propertyModal').addEventListener('click', (e) => {
                 if (e.target === e.currentTarget) {
                     closeModal();
                 }
             });
             
-            // Handle slider scroll events
-            Object.keys(sliders).forEach(sliderKey => {
-                const slider = sliders[sliderKey];
-                if (slider.element) {
-                    slider.element.addEventListener('scroll', () => {
-                        // Update current slide based on scroll position
-                        if (slider.element.children.length > 0) {
-                            const slide = slider.element.children[0];
-                            const computedStyle = getComputedStyle(slide);
-                            const slideWidth = slide.offsetWidth + 
-                                             parseInt(computedStyle.marginRight || 0);
-                            slider.currentSlide = Math.round(slider.element.scrollLeft / slideWidth);
-                            updateSlider(sliderKey);
+            // Add keyboard navigation for horizontal scroll sections
+            const scrollSections = ['services', 'agents', 'neighborhoods', 'testimonials', 'partners'];
+            
+            scrollSections.forEach(section => {
+                const container = document.getElementById(`${section}Scroll`);
+                if (container) {
+                    container.setAttribute('tabindex', '0');
+                    container.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowLeft') {
+                            container.scrollBy({ left: -300, behavior: 'smooth' });
+                        } else if (e.key === 'ArrowRight') {
+                            container.scrollBy({ left: 300, behavior: 'smooth' });
                         }
-                    }, { passive: true });
+                    });
                 }
             });
         }
@@ -3640,7 +3494,7 @@
             closeModal();
         }
 
-        // Initialize everything when DOM is loaded
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
