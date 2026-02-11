@@ -2290,11 +2290,9 @@
         <button class="floating-btn currency-toggle-floating" onclick="toggleCurrency()">
             <i class="fas fa-exchange-alt"></i>
         </button>
-        <!-- 
         <button class="floating-btn theme-toggle-floating" onclick="toggleTheme()">
             <i class="fas fa-moon"></i>
         </button>
-        -->
     </div>
 
     <!-- Hero Section -->
@@ -3040,8 +3038,7 @@
         let darkMode = false;
         let isMobileMenuOpen = false;
 
-        // ============= FIXED SLIDER CODE =============
-        // Slider instances with proper responsive detection
+        // Slider instances
         const sliders = {
             services: {
                 element: null,
@@ -3050,9 +3047,7 @@
                 dots: null,
                 currentSlide: 0,
                 totalSlides: 0,
-                slidesPerView: 1,
-                gap: 2.5,
-                cardWidth: 0
+                slidesPerView: 3
             },
             agents: {
                 element: null,
@@ -3061,9 +3056,7 @@
                 dots: null,
                 currentSlide: 0,
                 totalSlides: 0,
-                slidesPerView: 1,
-                gap: 2.5,
-                cardWidth: 0
+                slidesPerView: 3
             },
             neighborhoods: {
                 element: null,
@@ -3072,9 +3065,7 @@
                 dots: null,
                 currentSlide: 0,
                 totalSlides: 0,
-                slidesPerView: 1,
-                gap: 2,
-                cardWidth: 0
+                slidesPerView: 3
             },
             testimonials: {
                 element: null,
@@ -3083,303 +3074,24 @@
                 dots: null,
                 currentSlide: 0,
                 totalSlides: 0,
-                slidesPerView: 1,
-                gap: 2,
-                cardWidth: 0
+                slidesPerView: 1
             },
             partners: {
                 element: null,
                 prevBtn: null,
                 nextBtn: null,
-                dots: null,
                 currentSlide: 0,
                 totalSlides: 0,
-                slidesPerView: 1,
-                gap: 4,
-                cardWidth: 0
+                slidesPerView: 5
             }
         };
-
-        // Get slides per view based on screen width
-        function getSlidesPerView(sliderType) {
-            const width = window.innerWidth;
-            
-            if (sliderType === 'testimonials') {
-                if (width < 768) return 1;
-                if (width < 992) return 1.5;
-                return 2.2;
-            }
-            
-            if (sliderType === 'partners') {
-                if (width < 576) return 1.5;
-                if (width < 768) return 2.5;
-                if (width < 992) return 3.5;
-                if (width < 1200) return 4.5;
-                return 5.5;
-            }
-            
-            // Services, Agents, Neighborhoods
-            if (width < 768) return 1.1;
-            if (width < 992) return 1.8;
-            if (width < 1200) return 2.2;
-            if (width < 1600) return 2.5;
-            return 3.2;
-        }
-
-        // Calculate scroll position based on slide index
-        function calculateScrollPosition(slider) {
-            const container = slider.element;
-            if (!container || container.children.length === 0) return 0;
-            
-            const firstCard = container.children[0];
-            const cardWidth = firstCard.offsetWidth;
-            const gap = parseFloat(getComputedStyle(container).gap) || 0;
-            
-            return slider.currentSlide * (cardWidth + gap);
-        }
-
-        // Update slider dots
-        function updateDots(slider) {
-            if (!slider.dots) return;
-            
-            const totalDots = Math.max(1, Math.ceil(slider.totalSlides / slider.slidesPerView));
-            slider.dots.innerHTML = '';
-            
-            for (let i = 0; i < totalDots; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'slider-dot';
-                dot.setAttribute('data-index', i);
-                dot.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const dotIndex = parseInt(e.currentTarget.getAttribute('data-index'));
-                    slideToSlider(slider, dotIndex * slider.slidesPerView);
-                });
-                slider.dots.appendChild(dot);
-            }
-            
-            const activeDotIndex = Math.floor(slider.currentSlide / slider.slidesPerView);
-            const dots = slider.dots.querySelectorAll('.slider-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === activeDotIndex);
-            });
-        }
-
-        // Update button states
-        function updateButtons(slider) {
-            if (!slider.element) return;
-            
-            const maxSlide = Math.max(0, slider.totalSlides - slider.slidesPerView);
-            
-            if (slider.prevBtn) {
-                slider.prevBtn.disabled = slider.currentSlide <= 0;
-            }
-            
-            if (slider.nextBtn) {
-                slider.nextBtn.disabled = slider.currentSlide >= maxSlide - 0.1;
-            }
-        }
-
-        // Slide to specific index
-        function slideToSlider(slider, index) {
-            if (!slider.element) return;
-            
-            const maxSlide = Math.max(0, slider.totalSlides - slider.slidesPerView);
-            index = Math.max(0, Math.min(index, maxSlide));
-            slider.currentSlide = index;
-            
-            const scrollPosition = calculateScrollPosition(slider);
-            
-            slider.element.scrollTo({
-                left: scrollPosition,
-                behavior: 'smooth'
-            });
-            
-            updateButtons(slider);
-            updateDots(slider);
-        }
-
-        // Slide to specific index by slider key
-        function slideTo(sliderKey, index) {
-            const slider = sliders[sliderKey];
-            if (!slider || !slider.element) return;
-            
-            slideToSlider(slider, index);
-        }
-
-        // Update slider properties based on current screen size
-        function updateSliderProperties(slider) {
-            if (!slider.element) return;
-            
-            slider.totalSlides = slider.element.children.length;
-            slider.slidesPerView = getSlidesPerView(slider.element.id.replace('Slider', ''));
-            
-            // Adjust current slide to prevent overflow
-            const maxSlide = Math.max(0, slider.totalSlides - slider.slidesPerView);
-            if (slider.currentSlide > maxSlide) {
-                slider.currentSlide = Math.max(0, maxSlide);
-            }
-        }
-
-        // Update all sliders on resize
-        function updateAllSliders() {
-            Object.keys(sliders).forEach(key => {
-                const slider = sliders[key];
-                if (slider.element) {
-                    updateSliderProperties(slider);
-                    updateButtons(slider);
-                    updateDots(slider);
-                    
-                    // Restore scroll position
-                    const scrollPosition = calculateScrollPosition(slider);
-                    slider.element.scrollLeft = scrollPosition;
-                }
-            });
-        }
-
-        // Create dots for slider
-        function createDots(slider) {
-            updateDots(slider);
-        }
-
-        // Add touch support for sliders
-        function addTouchSupport(sliderKey) {
-            const slider = sliders[sliderKey];
-            if (!slider.element) return;
-            
-            let startX, startScrollLeft;
-            let isDragging = false;
-            
-            slider.element.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startScrollLeft = slider.element.scrollLeft;
-                isDragging = true;
-            }, { passive: true });
-            
-            slider.element.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const x = e.touches[0].clientX;
-                const walk = (startX - x) * 1.5;
-                slider.element.scrollLeft = startScrollLeft + walk;
-            }, { passive: true });
-            
-            slider.element.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                
-                const cardWidth = slider.element.children[0]?.offsetWidth || 0;
-                const gap = parseFloat(getComputedStyle(slider.element).gap) || 0;
-                const newIndex = Math.round(slider.element.scrollLeft / (cardWidth + gap));
-                
-                slideToSlider(slider, newIndex);
-            });
-        }
-
-        // Initialize all sliders
-        function initializeSliders() {
-            Object.keys(sliders).forEach(key => {
-                const slider = sliders[key];
-                const sliderId = `${key}Slider`;
-                
-                slider.element = document.getElementById(sliderId);
-                if (!slider.element) return;
-                
-                slider.prevBtn = document.getElementById(`${key}Prev`);
-                slider.nextBtn = document.getElementById(`${key}Next`);
-                
-                if (key !== 'partners') {
-                    slider.dots = document.getElementById(`${key}Dots`);
-                }
-                
-                // Set initial properties
-                slider.totalSlides = slider.element.children.length;
-                slider.currentSlide = 0;
-                updateSliderProperties(slider);
-                
-                // Create dots
-                if (slider.dots) {
-                    createDots(slider);
-                }
-                
-                // Add button listeners
-                if (slider.prevBtn) {
-                    slider.prevBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        slideTo(key, sliders[key].currentSlide - sliders[key].slidesPerView);
-                    });
-                }
-                
-                if (slider.nextBtn) {
-                    slider.nextBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        slideTo(key, sliders[key].currentSlide + sliders[key].slidesPerView);
-                    });
-                }
-                
-                // Add scroll listener to update buttons and dots
-                slider.element.addEventListener('scroll', () => {
-                    if (!slider.element) return;
-                    
-                    const cardWidth = slider.element.children[0]?.offsetWidth || 0;
-                    const gap = parseFloat(getComputedStyle(slider.element).gap) || 0;
-                    const scrollLeft = slider.element.scrollLeft;
-                    const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-                    
-                    if (newIndex !== slider.currentSlide && newIndex >= 0 && newIndex <= slider.totalSlides - slider.slidesPerView) {
-                        slider.currentSlide = newIndex;
-                        updateButtons(slider);
-                        updateDots(slider);
-                    }
-                });
-                
-                // Add touch support
-                addTouchSupport(key);
-                
-                // Initial update
-                updateButtons(slider);
-            });
-            
-            // Auto-advance testimonials
-            setInterval(() => {
-                const slider = sliders.testimonials;
-                if (slider.element && slider.totalSlides > slider.slidesPerView) {
-                    const maxSlide = Math.max(0, slider.totalSlides - slider.slidesPerView);
-                    let nextSlide = slider.currentSlide + slider.slidesPerView;
-                    if (nextSlide > maxSlide) {
-                        nextSlide = 0;
-                    }
-                    slideTo('testimonials', nextSlide);
-                }
-            }, 5000);
-        }
-
-        // Handle window resize
-        function handleResize() {
-            let resizeTimer;
-            return function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    updateAllSliders();
-                }, 150);
-            };
-        }
-
-        // ============= END FIXED SLIDER CODE =============
 
         function init() {
             loadThemePreference();
             displayProperties(properties);
             setupEventListeners();
             initializeSliders();
-            
-            // Add resize listener
-            window.addEventListener('resize', handleResize());
-            
-            // Add orientation change listener
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    updateAllSliders();
-                }, 200);
-            });
+            setupResponsiveBehavior();
         }
 
         function loadThemePreference() {
@@ -3623,6 +3335,204 @@
                 isMobileMenuOpen = false;
                 document.body.style.overflow = 'auto';
             }
+        }
+
+        function initializeSliders() {
+            // Initialize all sliders
+            Object.keys(sliders).forEach(sliderKey => {
+                const slider = sliders[sliderKey];
+                slider.element = document.getElementById(`${sliderKey}Slider`);
+                slider.prevBtn = document.getElementById(`${sliderKey}Prev`);
+                slider.nextBtn = document.getElementById(`${sliderKey}Next`);
+                
+                if (slider.element) {
+                    slider.totalSlides = slider.element.children.length;
+                    
+                    // Create dots for sliders that need them
+                    if (sliderKey !== 'partners') {
+                        slider.dots = document.getElementById(`${sliderKey}Dots`);
+                        if (slider.dots) {
+                            createDots(slider);
+                        }
+                    }
+                    
+                    // Add event listeners for buttons
+                    if (slider.prevBtn) {
+                        slider.prevBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide - 1));
+                    }
+                    if (slider.nextBtn) {
+                        slider.nextBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide + 1));
+                    }
+                    
+                    // Initialize slider
+                    updateSlider(sliderKey);
+                    
+                    // Add touch support
+                    addTouchSupport(sliderKey);
+                }
+            });
+            
+            // Auto-advance testimonials slider
+            setInterval(() => {
+                const slider = sliders.testimonials;
+                if (slider.element && slider.totalSlides > 1) {
+                    slideTo('testimonials', (slider.currentSlide + 1) % slider.totalSlides);
+                }
+            }, 5000);
+        }
+
+        function createDots(slider) {
+            slider.dots.innerHTML = '';
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const totalDots = Math.ceil(slider.totalSlides / slidesPerView);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot';
+                if (i === Math.floor(slider.currentSlide / slidesPerView)) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    slideTo(slider.element.id.replace('Slider', ''), i * slidesPerView);
+                });
+                slider.dots.appendChild(dot);
+            }
+        }
+
+        function getSlidesPerView(sliderId) {
+            const width = window.innerWidth;
+            const sliderKey = sliderId.replace('Slider', '');
+            
+            if (width < 768) {
+                return 1;
+            } else if (width < 1200) {
+                if (sliderKey === 'testimonials') return 1;
+                return 2;
+            } else {
+                if (sliderKey === 'testimonials') return 1;
+                if (sliderKey === 'partners') return 5;
+                return 3;
+            }
+        }
+
+        function slideTo(sliderKey, index) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const maxSlide = slider.totalSlides - slidesPerView;
+            
+            // Handle wrap-around for testimonials
+            if (sliderKey === 'testimonials') {
+                if (index >= slider.totalSlides) index = 0;
+                if (index < 0) index = slider.totalSlides - 1;
+            } else {
+                // For other sliders, clamp to boundaries
+                index = Math.max(0, Math.min(index, maxSlide));
+            }
+            
+            slider.currentSlide = index;
+            
+            // Calculate scroll position
+            const slideWidth = slider.element.children[0].offsetWidth + 
+                             parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+            const scrollPosition = index * slideWidth;
+            
+            slider.element.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            
+            updateSlider(sliderKey);
+        }
+
+        function updateSlider(sliderKey) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            const slidesPerView = getSlidesPerView(slider.element.id);
+            const maxSlide = slider.totalSlides - slidesPerView;
+            
+            // Update button states
+            if (slider.prevBtn) {
+                slider.prevBtn.disabled = slider.currentSlide === 0;
+            }
+            if (slider.nextBtn) {
+                if (sliderKey === 'testimonials') {
+                    slider.nextBtn.disabled = false; // Always enabled for wrap-around
+                } else {
+                    slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
+                }
+            }
+            
+            // Update dots
+            if (slider.dots) {
+                const dots = slider.dots.querySelectorAll('.slider-dot');
+                const activeDotIndex = Math.floor(slider.currentSlide / slidesPerView);
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDotIndex);
+                });
+            }
+        }
+
+        function addTouchSupport(sliderKey) {
+            const slider = sliders[sliderKey];
+            if (!slider.element) return;
+            
+            let startX;
+            let scrollLeft;
+            let isDragging = false;
+            
+            slider.element.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - slider.element.offsetLeft;
+                scrollLeft = slider.element.scrollLeft;
+                isDragging = true;
+            });
+            
+            slider.element.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - slider.element.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.element.scrollLeft = scrollLeft - walk;
+            });
+            
+            slider.element.addEventListener('touchend', () => {
+                isDragging = false;
+                // Snap to nearest slide
+                const slideWidth = slider.element.children[0].offsetWidth + 
+                                 parseInt(getComputedStyle(slider.element.children[0]).marginRight);
+                const newSlide = Math.round(slider.element.scrollLeft / slideWidth);
+                slideTo(sliderKey, newSlide);
+            });
+        }
+
+        function setupResponsiveBehavior() {
+            // Update sliders on window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    Object.keys(sliders).forEach(sliderKey => {
+                        updateSlider(sliderKey);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
+                        }
+                    });
+                }, 250);
+            });
+            
+            // Handle orientation change
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    Object.keys(sliders).forEach(sliderKey => {
+                        updateSlider(sliderKey);
+                        if (sliders[sliderKey].dots) {
+                            createDots(sliders[sliderKey]);
+                        }
+                    });
+                }, 300);
+            });
         }
 
         function setupEventListeners() {
