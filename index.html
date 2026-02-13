@@ -870,7 +870,7 @@
             transform: scale(1.2);
         }
 
-        /* NEW: Agents Section with Slider */
+
         .agents-section {
             padding: 6rem 5%;
             background: var(--bg-secondary);
@@ -967,7 +967,7 @@
             transform: translateY(-2px);
         }
 
-        /* NEW: Neighborhoods Section with Slider */
+
         .neighborhoods-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -1040,14 +1040,26 @@
             opacity: 0.9;
         }
 
-        /* NEW: Testimonials Section with Enhanced Slider */
+
         .testimonials-section {
             padding: 6rem 5%;
-            background: var(--gradient-dark);
+            background: linear-gradient(135deg, #00563B 0%, #002b1d 100%);
             color: #FFFFFF;
             position: relative;
             overflow: hidden;
             --accent-primary: #FFD700;
+        }
+
+        .testimonials-section .section-title {
+            color: #FFFFFF;
+        }
+
+        .testimonials-section .section-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonials-section .section-subtitle {
+            color: var(--accent-primary);
         }
 
         .testimonials-slider-container {
@@ -1115,6 +1127,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
             margin-bottom: 0.25rem;
+            color: #FFFFFF;
         }
 
         .author-info p {
@@ -1123,7 +1136,7 @@
             color: #E0E0E0;
         }
 
-        /* NEW: Partners Section with Slider */
+
         .partners-section {
             padding: 5rem 5%;
             background: var(--bg-secondary);
@@ -1168,7 +1181,7 @@
             transform: scale(1.05);
         }
 
-        /* Properties Section */
+
         .properties-section {
             padding: 6rem 5%;
             background: var(--bg-primary);
@@ -1322,7 +1335,7 @@
             font-size: 0.85rem;
         }
 
-        /* Section Common Styles */
+
         .section {
             padding: 5rem 5%;
         }
@@ -1356,7 +1369,7 @@
             line-height: 1.8;
         }
 
-        /* Filter Tabs */
+
         .filter-tabs {
             display: flex;
             justify-content: center;
@@ -1390,7 +1403,7 @@
             color: #FFFFFF;
         }
 
-        /* No Results */
+
         .no-results {
             text-align: center;
             padding: 4rem 1rem;
@@ -1404,7 +1417,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Floating Controls */
+
         .floating-controls {
             position: fixed;
             right: 1.5rem;
@@ -1447,7 +1460,7 @@
             transform: translateY(-3px);
         }
 
-        /* Modal */
+
         .modal {
             display: none;
             position: fixed;
@@ -1663,7 +1676,7 @@
             transform: translateY(-3px);
         }
 
-        /* Footer */
+
         footer {
             background: #0A0A0A;
             color: #FFFFFF;
@@ -1755,7 +1768,7 @@
             color: #FFFFFF;
         }
 
-        /* Responsive Breakpoints */
+
         @media (max-width: 1600px) {
 
             .service-card,
@@ -2095,7 +2108,7 @@
             }
         }
 
-        /* Tablet Portrait */
+
         @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .hero {
                 min-height: 70vh;
@@ -2110,14 +2123,14 @@
             }
         }
 
-        /* Tablet Landscape */
+
         @media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
             .hero {
                 min-height: 80vh;
             }
         }
 
-        /* Large Desktop */
+
         @media (min-width: 1920px) {
             .section {
                 padding: 7rem 5%;
@@ -2132,7 +2145,7 @@
             }
         }
 
-        /* Reduced Motion */
+
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -2153,7 +2166,7 @@
             }
         }
 
-        /* Touch Device Optimizations */
+
         @media (hover: none) and (pointer: coarse) {
 
             .btn:hover,
@@ -2213,7 +2226,7 @@
             }
         }
 
-        /* High Pixel Density Screens */
+
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
             .hero-bg img {
@@ -2222,7 +2235,7 @@
             }
         }
 
-        /* Print Styles */
+
         @media print {
 
             .nav-wrapper,
