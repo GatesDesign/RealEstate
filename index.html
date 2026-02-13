@@ -62,7 +62,8 @@
         }
 
         html {
-            font-size: 16px;
+            font-size: 14px;
+            /* Reduced to 14px for mature look */
             scroll-behavior: smooth;
         }
 
@@ -71,7 +72,8 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.5;
+            /* Reduced from 1.6 */
             transition: background-color var(--transition-speed) var(--transition-ease),
                 color var(--transition-speed) var(--transition-ease);
         }
@@ -221,7 +223,8 @@
 
         .nav-menu a {
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            /* ~11.9px at 14px base */
             letter-spacing: 0.5px;
             position: relative;
             transition: color var(--transition-speed) var(--transition-ease);
@@ -284,7 +287,8 @@
             padding: 0.6rem 1.2rem;
             border-radius: 4px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            /* Reduced button text */
             letter-spacing: 0.5px;
             text-transform: uppercase;
             transition: all var(--transition-speed) var(--transition-ease);
@@ -382,11 +386,13 @@
             letter-spacing: -0.5px;
             opacity: 0;
             animation: fadeInUp 1s ease 0.5s forwards;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            /* Significantly reduced hero title */
         }
 
         .hero-description {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 0.95rem;
+            /* Sleek, readable description */
             font-weight: 300;
             max-width: 700px;
             margin: 0 auto 3rem;
@@ -421,7 +427,7 @@
         .btn {
             padding: 0.9rem 2rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             border-radius: 4px;
@@ -597,11 +603,12 @@
             font-weight: 800;
             color: var(--accent-primary);
             margin-bottom: 0.5rem;
-            font-size: clamp(2.2rem, 3vw, 3rem);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            /* Reduced stats */
         }
 
         .stat-label {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 400;
             letter-spacing: 1.2px;
             text-transform: uppercase;
@@ -671,13 +678,16 @@
             font-family: 'Playfair Display', serif;
             font-weight: 800;
             color: var(--text-primary);
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            /* Reduced Section Titles */
         }
 
         .about-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            /* Reduced from 1.1rem */
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 2rem;
@@ -787,7 +797,8 @@
 
         .service-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            /* Reduced card titles */
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
@@ -926,7 +937,7 @@
 
         .agent-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
@@ -1027,7 +1038,8 @@
 
         .neighborhood-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.35rem;
+            /* Neighborhood names */
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -1086,8 +1098,9 @@
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            /* Reduced from 1.1rem */
+            line-height: 1.6;
             margin-bottom: 2rem;
             font-style: italic;
         }
@@ -1341,11 +1354,12 @@
             color: var(--text-primary);
             margin-bottom: 1rem;
             line-height: 1.2;
-            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            /* Generic Section Titles */
         }
 
         .section-description {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             line-height: 1.8;
         }
