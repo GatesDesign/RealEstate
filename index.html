@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LUXE ESTATE | Premium Real Estate Nigeria</title>
+    <meta name="description"
+        content="Discover premium real estate in Nigeria with a refined luxury property experience built for browsing, filtering, and contacting elite agents.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,6 +78,45 @@
                 color var(--transition-speed) var(--transition-ease);
         }
 
+        main {
+            display: block;
+        }
+
+        section[id],
+        footer[id] {
+            scroll-margin-top: 7rem;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-secondary);
+            color: #FFFFFF;
+            padding: 0.85rem 1.15rem;
+            border-radius: 6px;
+            transform: translateY(-200%);
+            transition: transform var(--transition-speed) var(--transition-ease);
+            z-index: 2000;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -100,13 +141,21 @@
             color: inherit;
         }
 
+        :focus-visible {
+            outline: 3px solid rgba(0, 86, 59, 0.45);
+            outline-offset: 3px;
+        }
+
+        [data-theme="dark"] :focus-visible {
+            outline-color: rgba(212, 175, 55, 0.45);
+        }
+
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
 
         .hide-scrollbar {
             -ms-overflow-style: none;
-            scrollbar-width: none;
         }
 
         /* Navigation */
@@ -117,6 +166,7 @@
             right: 0;
             z-index: 1000;
             background: rgba(249, 247, 244, 0.95);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             transition: all var(--transition-speed) var(--transition-ease);
@@ -671,7 +721,6 @@
             font-family: 'Playfair Display', serif;
             font-weight: 800;
             color: var(--text-primary);
-            color: var(--text-primary);
             margin-bottom: 1.5rem;
             line-height: 1.2;
             font-size: clamp(1.6rem, 2.5vw, 2.2rem);
@@ -742,7 +791,6 @@
             gap: 2.5rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
         }
@@ -889,7 +937,6 @@
             gap: 2.5rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
         }
@@ -986,7 +1033,6 @@
             gap: 2rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
         }
@@ -1073,7 +1119,6 @@
             gap: 2rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
             padding: 1rem 0.5rem 3rem;
             -ms-overflow-style: none;
         }
@@ -1085,6 +1130,7 @@
         .testimonial-card {
             flex: 0 0 350px;
             background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 2.5rem;
             border-radius: 12px;
@@ -1155,7 +1201,6 @@
             gap: 4rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none;
             padding: 2rem 0.5rem;
             -ms-overflow-style: none;
             align-items: center;
@@ -1208,6 +1253,15 @@
             flex-direction: column;
         }
 
+        .property-card:focus-visible {
+            box-shadow: 0 0 0 4px rgba(0, 86, 59, 0.18), 0 15px 40px var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        [data-theme="dark"] .property-card:focus-visible {
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18), 0 15px 40px var(--shadow-hover);
+        }
+
         .property-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 15px 40px var(--shadow-hover);
@@ -1255,6 +1309,7 @@
             top: 1rem;
             right: 1rem;
             background: rgba(249, 247, 244, 0.9);
+            -webkit-backdrop-filter: blur(6px);
             backdrop-filter: blur(6px);
             border: 1px solid var(--border-color);
             width: 40px;
@@ -1403,6 +1458,18 @@
             color: #FFFFFF;
         }
 
+        .results-summary {
+            max-width: 1600px;
+            margin: -1.5rem auto 2.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .results-summary strong {
+            color: var(--text-primary);
+        }
+
 
         .no-results {
             text-align: center;
@@ -1415,6 +1482,10 @@
             font-size: 1.8rem;
             color: var(--text-primary);
             margin-bottom: 1rem;
+        }
+
+        .no-results .btn {
+            margin-top: 1rem;
         }
 
 
@@ -1458,6 +1529,56 @@
 
         .currency-toggle-floating:hover {
             transform: translateY(-3px);
+        }
+
+        .toast-region {
+            position: fixed;
+            top: 6.5rem;
+            right: 1.5rem;
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: min(360px, calc(100vw - 2rem));
+        }
+
+        .toast {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            padding: 1rem 1.1rem;
+            background: rgba(255, 255, 255, 0.97);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px var(--shadow-hover);
+            transform: translateY(-8px);
+            opacity: 0;
+            transition: opacity var(--transition-speed) var(--transition-ease),
+                transform var(--transition-speed) var(--transition-ease);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast[data-type="success"] .toast-icon {
+            color: var(--success-color);
+        }
+
+        .toast[data-type="info"] .toast-icon {
+            color: var(--accent-secondary);
+        }
+
+        [data-theme="dark"] .toast {
+            background: rgba(30, 30, 30, 0.97);
+        }
+
+        .toast-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+            margin-top: 1px;
         }
 
 
@@ -1884,13 +2005,17 @@
                 justify-content: flex-start;
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
-                -webkit-overflow-scrolling: touch;
                 gap: 0.5rem;
             }
 
             .filter-tab {
                 padding: 0.6rem 1.2rem;
                 font-size: 0.8rem;
+            }
+
+            .results-summary {
+                text-align: left;
+                margin: -1rem auto 2rem;
             }
 
             .properties-grid {
@@ -1905,6 +2030,12 @@
             .floating-controls {
                 right: 1rem;
                 bottom: 1rem;
+            }
+
+            .toast-region {
+                right: 1rem;
+                left: 1rem;
+                width: auto;
             }
 
             .floating-btn {
@@ -2004,7 +2135,7 @@
 
             .service-card,
             .agent-card {
-                min-height: auto;
+                min-height: 0;
                 padding: 2rem 1.5rem;
             }
 
@@ -2027,7 +2158,7 @@
 
             .testimonial-card {
                 padding: 1.5rem;
-                min-height: auto;
+                min-height: 0;
             }
 
             .testimonial-text {
@@ -2204,7 +2335,7 @@
             .service-card,
             .agent-card,
             .neighborhood-card {
-                min-height: auto;
+                min-height: 0;
             }
 
             .slider-controls {
@@ -2230,8 +2361,7 @@
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
             .hero-bg img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
+                image-rendering: auto;
             }
         }
 
@@ -2247,7 +2377,7 @@
             }
 
             .hero {
-                min-height: auto;
+                min-height: 0;
                 padding: 2rem 5%;
             }
 
@@ -2286,6 +2416,8 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+
     <!-- Navigation -->
     <div class="nav-wrapper">
         <nav>
@@ -2297,13 +2429,14 @@
                 </div>
             </a>
 
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navMenu"
+                aria-label="Open navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <ul class="nav-menu" id="navMenu">
+            <ul class="nav-menu" id="navMenu" aria-label="Primary navigation" aria-hidden="true">
                 <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#properties"><i class="fas fa-building"></i> Properties</a></li>
                 <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
@@ -2313,10 +2446,11 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme"
+                    title="Switch to dark theme">
                     <i class="fas fa-sun"></i>
                 </button>
-                <button class="nav-cta" onclick="listProperty()">
+                <button class="nav-cta" id="listPropertyButton" type="button">
                     <i class="fas fa-plus"></i> List Property
                 </button>
             </div>
@@ -2325,14 +2459,19 @@
 
     <!-- Floating Controls -->
     <div class="floating-controls">
-        <button class="floating-btn currency-toggle-floating" onclick="toggleCurrency()">
+        <button class="floating-btn currency-toggle-floating" id="currencyToggle" type="button"
+            aria-label="Show prices in US dollars" title="Show prices in US dollars">
             <i class="fas fa-exchange-alt"></i>
         </button>
-        <button class="floating-btn theme-toggle-floating" onclick="toggleTheme()">
+        <button class="floating-btn theme-toggle-floating" id="themeToggleFloating" type="button"
+            aria-label="Switch to dark theme" title="Switch to dark theme">
             <i class="fas fa-moon"></i>
         </button>
     </div>
 
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+    <main id="mainContent">
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg">
@@ -2358,15 +2497,16 @@
     </section>
 
     <!-- Search Section -->
-    <section class="search-section">
-        <div class="search-container">
+    <section class="search-section" aria-labelledby="propertySearchHeading">
+        <h2 class="sr-only" id="propertySearchHeading">Search premium properties</h2>
+        <form class="search-container" id="propertySearchForm">
             <div class="search-grid">
                 <div class="search-field">
-                    <label><i class="fas fa-map-marker-alt"></i> Location</label>
-                    <input type="text" id="searchLocation" placeholder="Enter city or area">
+                    <label for="searchLocation"><i class="fas fa-map-marker-alt"></i> Location</label>
+                    <input type="text" id="searchLocation" placeholder="Enter city or area" autocomplete="off">
                 </div>
                 <div class="search-field">
-                    <label><i class="fas fa-building"></i> Property Type</label>
+                    <label for="propertyType"><i class="fas fa-building"></i> Property Type</label>
                     <select id="propertyType">
                         <option value="">All Types</option>
                         <option value="penthouse">Penthouse</option>
@@ -2377,7 +2517,7 @@
                     </select>
                 </div>
                 <div class="search-field">
-                    <label><i class="fas fa-tag"></i> Price Range</label>
+                    <label for="priceRange"><i class="fas fa-tag"></i> Price Range</label>
                     <select id="priceRange">
                         <option value="">Any Price</option>
                         <option value="0-100000000">Under ₦100M</option>
@@ -2387,7 +2527,7 @@
                     </select>
                 </div>
                 <div class="search-field">
-                    <label><i class="fas fa-bed"></i> Bedrooms</label>
+                    <label for="bedrooms"><i class="fas fa-bed"></i> Bedrooms</label>
                     <select id="bedrooms">
                         <option value="">Any</option>
                         <option value="2">2+</option>
@@ -2397,10 +2537,10 @@
                     </select>
                 </div>
             </div>
-            <button class="search-btn" onclick="filterProperties()">
+            <button class="search-btn" type="submit">
                 <i class="fas fa-search"></i> Find Properties
             </button>
-        </div>
+        </form>
     </section>
 
     <!-- Stats Section -->
@@ -2495,40 +2635,40 @@
                     <h3>Property Acquisition</h3>
                     <p>Strategic property search, negotiation, and acquisition services for premium real estate
                         investments.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Portfolio Management</h3>
                     <p>Comprehensive management of luxury property portfolios with data-driven investment strategies.
                     </p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-user-tie"></i></div>
                     <h3>VIP Concierge</h3>
                     <p>Personalized services including interior design, security, and lifestyle management for elite
                         clients.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-gavel"></i></div>
                     <h3>Legal Advisory</h3>
                     <p>Expert legal guidance for property transactions, contracts, and regulatory compliance.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-home"></i></div>
                     <h3>Property Management</h3>
                     <p>Complete property maintenance, tenant management, and asset optimization services.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="slider-btn" id="servicesPrev">
+                <button class="slider-btn" id="servicesPrev" type="button" aria-label="Previous service">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slider-btn" id="servicesNext">
+                <button class="slider-btn" id="servicesNext" type="button" aria-label="Next service">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -2546,18 +2686,19 @@
             </p>
         </div>
 
-        <div class="filter-tabs">
-            <button class="filter-tab active" onclick="filterByStatus('all')">
+        <div class="filter-tabs" role="toolbar" aria-label="Filter properties by availability">
+            <button class="filter-tab active" type="button" data-status="all" aria-pressed="true">
                 <i class="fas fa-th"></i> All Properties
             </button>
-            <button class="filter-tab" onclick="filterByStatus('sale')">
+            <button class="filter-tab" type="button" data-status="sale" aria-pressed="false">
                 <i class="fas fa-tag"></i> For Sale
             </button>
-            <button class="filter-tab" onclick="filterByStatus('rent')">
+            <button class="filter-tab" type="button" data-status="rent" aria-pressed="false">
                 <i class="fas fa-file-contract"></i> For Rent
             </button>
         </div>
 
+        <p class="results-summary" id="resultsSummary" aria-live="polite"></p>
         <div class="properties-grid" id="propertiesGrid"></div>
     </section>
 
@@ -2580,9 +2721,9 @@
                         <p class="agent-title">Senior Partner</p>
                         <p>25+ years in luxury real estate, specializing in high-net-worth client acquisitions.</p>
                         <div class="agent-contact">
-                            <a href="tel:+2349012345678"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:chinedu@luxeestate.ng"><i class="fas fa-envelope"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="tel:+2349012345678" aria-label="Call Chinedu Okoro"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:chinedu@luxeestate.ng" aria-label="Email Chinedu Okoro"><i class="fas fa-envelope"></i></a>
+                            <a href="#contact" aria-label="Contact Chinedu Okoro"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2594,9 +2735,9 @@
                         <p class="agent-title">Luxury Portfolio Director</p>
                         <p>Expert in luxury property management and international client relations.</p>
                         <div class="agent-contact">
-                            <a href="tel:+2349012345679"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:amina@luxeestate.ng"><i class="fas fa-envelope"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="tel:+2349012345679" aria-label="Call Amina Bello"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:amina@luxeestate.ng" aria-label="Email Amina Bello"><i class="fas fa-envelope"></i></a>
+                            <a href="#contact" aria-label="Contact Amina Bello"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2608,9 +2749,9 @@
                         <p class="agent-title">Investment Strategist</p>
                         <p>Specializing in real estate investment analysis and portfolio optimization.</p>
                         <div class="agent-contact">
-                            <a href="tel:+2349012345680"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:tunde@luxeestate.ng"><i class="fas fa-envelope"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="tel:+2349012345680" aria-label="Call Tunde Adekunle"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:tunde@luxeestate.ng" aria-label="Email Tunde Adekunle"><i class="fas fa-envelope"></i></a>
+                            <a href="#contact" aria-label="Contact Tunde Adekunle"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2622,18 +2763,18 @@
                         <p class="agent-title">Legal Advisor</p>
                         <p>Expert in property law, contracts, and regulatory compliance for luxury real estate.</p>
                         <div class="agent-contact">
-                            <a href="tel:+2349012345681"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:chioma@luxeestate.ng"><i class="fas fa-envelope"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="tel:+2349012345681" aria-label="Call Chioma Nwachukwu"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:chioma@luxeestate.ng" aria-label="Email Chioma Nwachukwu"><i class="fas fa-envelope"></i></a>
+                            <a href="#contact" aria-label="Contact Chioma Nwachukwu"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="slider-btn" id="agentsPrev">
+                <button class="slider-btn" id="agentsPrev" type="button" aria-label="Previous agent">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slider-btn" id="agentsNext">
+                <button class="slider-btn" id="agentsNext" type="button" aria-label="Next agent">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -2714,10 +2855,10 @@
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="slider-btn" id="neighborhoodsPrev">
+                <button class="slider-btn" id="neighborhoodsPrev" type="button" aria-label="Previous neighborhood">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slider-btn" id="neighborhoodsNext">
+                <button class="slider-btn" id="neighborhoodsNext" type="button" aria-label="Next neighborhood">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -2798,10 +2939,10 @@
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="slider-btn" id="testimonialsPrev">
+                <button class="slider-btn" id="testimonialsPrev" type="button" aria-label="Previous testimonial">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slider-btn" id="testimonialsNext">
+                <button class="slider-btn" id="testimonialsNext" type="button" aria-label="Next testimonial">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -2836,10 +2977,10 @@
                     alt="Wealth Management" class="partner-logo" loading="lazy">
             </div>
             <div class="slider-controls">
-                <button class="slider-btn" id="partnersPrev">
+                <button class="slider-btn" id="partnersPrev" type="button" aria-label="Previous partner">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slider-btn" id="partnersNext">
+                <button class="slider-btn" id="partnersNext" type="button" aria-label="Next partner">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -2847,15 +2988,19 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal" id="propertyModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal" id="propertyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+        aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <button class="modal-close" id="modalCloseButton" type="button" aria-label="Close property details">×</button>
             <img class="modal-image" id="modalImage" src="" alt="" loading="lazy">
             <div class="modal-body">
                 <div class="modal-header">
                     <div class="modal-price" id="modalPrice"></div>
                     <h2 class="modal-title" id="modalTitle"></h2>
-                    <div class="modal-location" id="modalLocation"></div>
+                    <div class="modal-location">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <span id="modalLocation"></span>
+                    </div>
                 </div>
 
                 <div class="modal-features-grid">
@@ -2887,16 +3032,18 @@
                 </div>
 
                 <div class="modal-actions">
-                    <button class="btn-schedule" onclick="scheduleTour()">
+                    <button class="btn-schedule" id="scheduleTourButton" type="button">
                         <i class="fas fa-calendar"></i> Schedule Viewing
                     </button>
-                    <button class="btn-contact" onclick="contactAgent()">
+                    <button class="btn-contact" id="contactAgentButton" type="button">
                         <i class="fas fa-user-tie"></i> Contact Agent
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    </main>
 
     <!-- Footer -->
     <footer id="contact">
@@ -2905,11 +3052,11 @@
                 <h3><i class="fas fa-landmark"></i> LUXE ESTATE</h3>
                 <p>Redefining luxury real estate in Nigeria through exceptional service and unparalleled expertise.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#contact" aria-label="Contact us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#contact" aria-label="Contact us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#contact" aria-label="Contact us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#contact" aria-label="Contact us on X"><i class="fab fa-twitter"></i></a>
+                    <a href="#contact" aria-label="Contact us on YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="footer-section">
@@ -2937,15 +3084,16 @@
                 <ul>
                     <li><i class="fas fa-envelope"></i> <a href="mailto:info@luxeestate.ng">info@luxeestate.ng</a></li>
                     <li><i class="fas fa-phone"></i> <a href="tel:+2349012345678">+234 901 234 5678</a></li>
-                    <li><i class="fas fa-map-marker-alt"></i> <a href="#">Victoria Island, Lagos</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Victoria Island, Lagos</li>
                     <li><i class="fas fa-clock"></i> Mon - Fri: 9AM - 6PM</li>
                     <li><i class="fas fa-clock"></i> Sat: 10AM - 4PM</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 LUXE ESTATE NIGERIA. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a
-                    href="#">Terms of Service</a></p>
+            <p>&copy; 2026 LUXE ESTATE NIGERIA. All Rights Reserved. | <a
+                    href="mailto:legal@luxeestate.ng?subject=Privacy%20Policy%20Request">Privacy Policy</a> | <a
+                    href="mailto:legal@luxeestate.ng?subject=Terms%20of%20Service%20Request">Terms of Service</a></p>
         </div>
     </footer>
 
@@ -3101,6 +3249,7 @@
         let showInUSD = false;
         let darkMode = false;
         let isMobileMenuOpen = false;
+        let lastFocusedElement = null;
 
         // Slider instances
         const sliders = {
@@ -3151,37 +3300,102 @@
         };
 
         function init() {
+            loadFavoritesPreference();
+            loadCurrencyPreference();
             loadThemePreference();
-            displayProperties(properties);
+            updateThemeToggle();
+            updateCurrencyDisplay();
+            setActiveFilterTab(currentFilter);
+            displayProperties(filteredProperties);
             setupEventListeners();
             initializeSliders();
             setupResponsiveBehavior();
+            updateMobileMenuState();
+        }
+
+        function readPreference(key) {
+            try {
+                return localStorage.getItem(key);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function writePreference(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (error) {
+                // Ignore storage write failures gracefully.
+            }
+        }
+
+        function loadFavoritesPreference() {
+            const savedFavorites = readPreference('luxeEstateFavorites');
+            if (!savedFavorites) return;
+
+            try {
+                favorites = new Set(JSON.parse(savedFavorites));
+            } catch (error) {
+                favorites = new Set();
+            }
+        }
+
+        function loadCurrencyPreference() {
+            showInUSD = readPreference('luxeEstateCurrency') === 'usd';
         }
 
         function loadThemePreference() {
-            const savedTheme = localStorage.getItem('luxeEstateTheme');
-            darkMode = savedTheme === 'dark';
+            const savedTheme = readPreference('luxeEstateTheme');
+
+            if (savedTheme) {
+                darkMode = savedTheme === 'dark';
+            } else if (window.matchMedia) {
+                darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
             if (darkMode) {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+
+            updateThemeMeta();
+        }
+
+        function updateThemeMeta() {
+            const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute('content', darkMode ? '#121212' : '#F9F7F4');
             }
         }
 
         function toggleTheme() {
             darkMode = !darkMode;
+
             if (darkMode) {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('luxeEstateTheme', 'dark');
             } else {
                 document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('luxeEstateTheme', 'light');
             }
+
+            writePreference('luxeEstateTheme', darkMode ? 'dark' : 'light');
             updateThemeToggle();
+            updateThemeMeta();
         }
 
         function updateThemeToggle() {
-            const themeIcons = document.querySelectorAll('#themeToggle i, .theme-toggle-floating i');
-            themeIcons.forEach(icon => {
+            const nextThemeLabel = darkMode ? 'Switch to light theme' : 'Switch to dark theme';
+
+            document.querySelectorAll('#themeToggle i, #themeToggleFloating i').forEach(icon => {
                 icon.className = darkMode ? 'fas fa-sun' : 'fas fa-moon';
+            });
+
+            ['themeToggle', 'themeToggleFloating'].forEach(id => {
+                const button = document.getElementById(id);
+                if (button) {
+                    button.setAttribute('aria-label', nextThemeLabel);
+                    button.title = nextThemeLabel;
+                }
             });
         }
 
@@ -3191,22 +3405,36 @@
                 return isRent
                     ? `$${usdAmount.toLocaleString()}/month`
                     : `$${usdAmount.toLocaleString()}`;
-            } else {
-                return isRent
-                    ? `₦${amount.toLocaleString()}/month`
-                    : `₦${amount.toLocaleString()}`;
             }
+
+            return isRent
+                ? `₦${amount.toLocaleString()}/month`
+                : `₦${amount.toLocaleString()}`;
+        }
+
+        function updateResultsSummary(count = filteredProperties.length) {
+            const summary = document.getElementById('resultsSummary');
+            if (!summary) return;
+
+            const listingLabel = currentFilter === 'sale'
+                ? 'for-sale properties'
+                : currentFilter === 'rent'
+                    ? 'rental properties'
+                    : 'featured properties';
+
+            summary.innerHTML = `Showing <strong>${count}</strong> of <strong>${properties.length}</strong> ${listingLabel}`;
         }
 
         function displayProperties(props) {
             const grid = document.getElementById('propertiesGrid');
+            updateResultsSummary(props.length);
 
             if (props.length === 0) {
                 grid.innerHTML = `
                     <div class="no-results">
                         <h3><i class="fas fa-search"></i> No Properties Found</h3>
                         <p>Please adjust your filters or try a different search</p>
-                        <button class="btn btn-primary" onclick="resetFilters()" style="margin-top: 1rem;">
+                        <button class="btn btn-primary" type="button" data-action="reset-filters">
                             <i class="fas fa-redo"></i> Reset Filters
                         </button>
                     </div>
@@ -3214,67 +3442,75 @@
                 return;
             }
 
-            grid.innerHTML = props.map(property => `
-                <div class="property-card" onclick="openModal(${property.id})">
-                    <div class="property-image-wrapper">
-                        <img class="property-image" src="${property.image}" alt="${property.title}" loading="lazy" width="400" height="260">
-                        <span class="property-badge ${property.status === 'sale' ? 'for-sale' : ''}">
-                            ${property.status === 'sale' ? '<i class="fas fa-tag"></i> For Sale' : '<i class="fas fa-file-contract"></i> For Rent'}
-                        </span>
-                        <button class="favorite-btn ${favorites.has(property.id) ? 'active' : ''}" 
-                                onclick="event.stopPropagation(); toggleFavorite(${property.id})">
-                            ${favorites.has(property.id) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}
-                        </button>
-                    </div>
-                    <div class="property-details">
-                        <div class="property-price">
-                            ${formatCurrency(property.price, property.status === 'rent')}
+            grid.innerHTML = props.map(property => {
+                const isFavorite = favorites.has(property.id);
+                const favoriteLabel = isFavorite
+                    ? `Remove ${property.title} from saved properties`
+                    : `Save ${property.title} to saved properties`;
+
+                return `
+                    <article class="property-card" data-property-id="${property.id}" tabindex="0" role="button"
+                        aria-label="View details for ${property.title}">
+                        <div class="property-image-wrapper">
+                            <img class="property-image" src="${property.image}" alt="${property.title}" loading="lazy" width="400" height="260">
+                            <span class="property-badge ${property.status === 'sale' ? 'for-sale' : ''}">
+                                ${property.status === 'sale' ? '<i class="fas fa-tag"></i> For Sale' : '<i class="fas fa-file-contract"></i> For Rent'}
+                            </span>
+                            <button class="favorite-btn ${isFavorite ? 'active' : ''}" type="button"
+                                data-property-id="${property.id}" aria-pressed="${isFavorite}"
+                                aria-label="${favoriteLabel}">
+                                ${isFavorite ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}
+                            </button>
                         </div>
-                        <h3 class="property-title">${property.title}</h3>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i> ${property.location}
+                        <div class="property-details">
+                            <div class="property-price">
+                                ${formatCurrency(property.price, property.status === 'rent')}
+                            </div>
+                            <h3 class="property-title">${property.title}</h3>
+                            <div class="property-location">
+                                <i class="fas fa-map-marker-alt"></i> ${property.location}
+                            </div>
+                            <div class="property-features">
+                                <div class="feature"><i class="fas fa-bed"></i> ${property.beds}</div>
+                                <div class="feature"><i class="fas fa-bath"></i> ${property.baths}</div>
+                                <div class="feature"><i class="fas fa-expand-arrows-alt"></i> ${property.size.toLocaleString()} m²</div>
+                            </div>
                         </div>
-                        <div class="property-features">
-                            <div class="feature"><i class="fas fa-bed"></i> ${property.beds}</div>
-                            <div class="feature"><i class="fas fa-bath"></i> ${property.baths}</div>
-                            <div class="feature"><i class="fas fa-expand-arrows-alt"></i> ${property.size.toLocaleString()} m²</div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+                    </article>
+                `;
+            }).join('');
         }
 
-        function filterByStatus(status) {
-            currentFilter = status;
-
+        function setActiveFilterTab(status) {
             document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.classList.remove('active');
+                const isActive = tab.dataset.status === status;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-pressed', String(isActive));
             });
-            event.target.classList.add('active');
-
-            if (status === 'all') {
-                filteredProperties = [...properties];
-            } else {
-                filteredProperties = properties.filter(p => p.status === status);
-            }
-
-            displayProperties(filteredProperties);
-            closeMobileMenu();
         }
 
-        function filterProperties() {
-            const location = document.getElementById('searchLocation').value.toLowerCase();
-            const type = document.getElementById('propertyType').value;
-            const priceRange = document.getElementById('priceRange').value;
-            const bedrooms = document.getElementById('bedrooms').value;
+        function getSearchFilters() {
+            return {
+                query: document.getElementById('searchLocation').value.trim().toLowerCase(),
+                type: document.getElementById('propertyType').value,
+                priceRange: document.getElementById('priceRange').value,
+                bedrooms: document.getElementById('bedrooms').value
+            };
+        }
 
-            let filtered = properties.filter(property => {
+        function applyFilters({ scrollToResults = false } = {}) {
+            const { query, type, priceRange, bedrooms } = getSearchFilters();
+
+            filteredProperties = properties.filter(property => {
                 if (currentFilter !== 'all' && property.status !== currentFilter) {
                     return false;
                 }
 
-                if (location && !property.location.toLowerCase().includes(location)) {
-                    return false;
+                if (query) {
+                    const searchableText = `${property.title} ${property.location} ${property.description}`.toLowerCase();
+                    if (!searchableText.includes(query)) {
+                        return false;
+                    }
                 }
 
                 if (type && property.type !== type) {
@@ -3288,16 +3524,30 @@
                     }
                 }
 
-                if (bedrooms && property.beds < parseInt(bedrooms)) {
+                if (bedrooms && property.beds < Number.parseInt(bedrooms, 10)) {
                     return false;
                 }
 
                 return true;
             });
 
-            filteredProperties = filtered;
-            displayProperties(filtered);
+            displayProperties(filteredProperties);
+
+            if (scrollToResults) {
+                scrollToSection('#properties');
+            }
+
             closeMobileMenu();
+        }
+
+        function filterByStatus(status) {
+            currentFilter = status;
+            setActiveFilterTab(status);
+            applyFilters({ scrollToResults: false });
+        }
+
+        function filterProperties(options = {}) {
+            applyFilters({ scrollToResults: true, ...options });
         }
 
         function resetFilters() {
@@ -3306,54 +3556,88 @@
             document.getElementById('priceRange').value = '';
             document.getElementById('bedrooms').value = '';
 
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelector('.filter-tab').classList.add('active');
-
             currentFilter = 'all';
-            filteredProperties = [...properties];
-            displayProperties(filteredProperties);
+            setActiveFilterTab(currentFilter);
+            applyFilters({ scrollToResults: false });
         }
 
         function toggleFavorite(id) {
+            const property = properties.find(item => item.id === id);
+            if (!property) return;
+
             if (favorites.has(id)) {
                 favorites.delete(id);
+                showToast(`Removed ${property.title} from your saved properties.`, 'info');
             } else {
                 favorites.add(id);
+                showToast(`Saved ${property.title} for later.`, 'success');
             }
+
+            writePreference('luxeEstateFavorites', JSON.stringify(Array.from(favorites)));
             displayProperties(filteredProperties);
         }
 
-        function openModal(id) {
-            const property = properties.find(p => p.id === id);
+        function scrollToSection(selector) {
+            const target = document.querySelector(selector);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function syncBodyScroll() {
+            const modal = document.getElementById('propertyModal');
+            const shouldLockScroll = isMobileMenuOpen || (modal && modal.classList.contains('active'));
+            document.body.style.overflow = shouldLockScroll ? 'hidden' : 'auto';
+        }
+
+        function openModal(id, triggerElement = document.activeElement) {
+            const property = properties.find(item => item.id === id);
             if (!property) return;
+
+            lastFocusedElement = triggerElement;
+            closeMobileMenu();
 
             document.getElementById('modalImage').src = property.image;
             document.getElementById('modalImage').alt = property.title;
             document.getElementById('modalPrice').textContent = formatCurrency(property.price, property.status === 'rent');
             document.getElementById('modalTitle').textContent = property.title;
-            document.getElementById('modalLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.location}`;
+            document.getElementById('modalLocation').textContent = property.location;
             document.getElementById('modalBeds').textContent = property.beds;
             document.getElementById('modalBaths').textContent = property.baths;
             document.getElementById('modalSize').textContent = property.size.toLocaleString();
             document.getElementById('modalGarage').textContent = property.garage;
             document.getElementById('modalDescription').textContent = property.description;
+            document.getElementById('scheduleTourButton').setAttribute('aria-label', `Schedule a viewing for ${property.title}`);
+            document.getElementById('contactAgentButton').setAttribute('aria-label', `Contact an agent about ${property.title}`);
 
-            document.getElementById('propertyModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            closeMobileMenu();
+            const modal = document.getElementById('propertyModal');
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            syncBodyScroll();
+
+            document.getElementById('modalCloseButton').focus();
         }
 
-        function closeModal() {
-            document.getElementById('propertyModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function closeModal({ returnFocus = true } = {}) {
+            const modal = document.getElementById('propertyModal');
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            syncBodyScroll();
+
+            if (returnFocus && lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
         }
 
         function toggleCurrency() {
             showInUSD = !showInUSD;
+            writePreference('luxeEstateCurrency', showInUSD ? 'usd' : 'ngn');
             updateCurrencyDisplay();
             displayProperties(filteredProperties);
+            showToast(`Prices now display in ${showInUSD ? 'US dollars' : 'Nigerian naira'}.`, 'info');
         }
 
         function updateCurrencyDisplay() {
@@ -3372,77 +3656,144 @@
                     options[4].text = '₦1B+';
                 }
             }
-        }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('navMenu');
-            const toggle = document.getElementById('menuToggle');
-            isMobileMenuOpen = !isMobileMenuOpen;
-
-            menu.classList.toggle('active');
-            toggle.classList.toggle('active');
-
-            if (isMobileMenuOpen) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
+            const currencyToggle = document.getElementById('currencyToggle');
+            if (currencyToggle) {
+                const nextCurrencyLabel = showInUSD ? 'Show prices in Nigerian naira' : 'Show prices in US dollars';
+                currencyToggle.setAttribute('aria-label', nextCurrencyLabel);
+                currencyToggle.title = nextCurrencyLabel;
             }
         }
 
-        function closeMobileMenu() {
-            if (isMobileMenuOpen) {
-                const menu = document.getElementById('navMenu');
-                const toggle = document.getElementById('menuToggle');
+        function updateMobileMenuState() {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('menuToggle');
+            const isDesktopView = window.innerWidth > 992;
 
-                menu.classList.remove('active');
-                toggle.classList.remove('active');
-                isMobileMenuOpen = false;
-                document.body.style.overflow = 'auto';
+            menu.classList.toggle('active', isMobileMenuOpen);
+            toggle.classList.toggle('active', isMobileMenuOpen);
+            toggle.setAttribute('aria-expanded', String(isMobileMenuOpen));
+            toggle.setAttribute('aria-label', isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu');
+            menu.setAttribute('aria-hidden', isDesktopView ? 'false' : String(!isMobileMenuOpen));
+
+            syncBodyScroll();
+        }
+
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            updateMobileMenuState();
+        }
+
+        function closeMobileMenu() {
+            if (!isMobileMenuOpen) return;
+
+            isMobileMenuOpen = false;
+            updateMobileMenuState();
+        }
+
+        function showToast(message, type = 'success') {
+            const toastRegion = document.getElementById('toastRegion');
+            if (!toastRegion) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.dataset.type = type;
+
+            const icon = document.createElement('span');
+            icon.className = 'toast-icon';
+            icon.innerHTML = type === 'success'
+                ? '<i class="fas fa-check-circle"></i>'
+                : '<i class="fas fa-circle-info"></i>';
+
+            const text = document.createElement('span');
+            text.textContent = message;
+
+            toast.appendChild(icon);
+            toast.appendChild(text);
+            toastRegion.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 250);
+            }, 3800);
+        }
+
+        function handlePropertyGridClick(event) {
+            const resetButton = event.target.closest('[data-action="reset-filters"]');
+            if (resetButton) {
+                resetFilters();
+                return;
+            }
+
+            const favoriteButton = event.target.closest('.favorite-btn');
+            if (favoriteButton) {
+                toggleFavorite(Number(favoriteButton.dataset.propertyId));
+                return;
+            }
+
+            const propertyCard = event.target.closest('.property-card');
+            if (propertyCard) {
+                openModal(Number(propertyCard.dataset.propertyId), propertyCard);
+            }
+        }
+
+        function handlePropertyGridKeydown(event) {
+            if (event.target.closest('.favorite-btn')) return;
+
+            const propertyCard = event.target.closest('.property-card');
+            if (!propertyCard) return;
+
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openModal(Number(propertyCard.dataset.propertyId), propertyCard);
             }
         }
 
         function initializeSliders() {
-            // Initialize all sliders
             Object.keys(sliders).forEach(sliderKey => {
                 const slider = sliders[sliderKey];
                 slider.element = document.getElementById(`${sliderKey}Slider`);
                 slider.prevBtn = document.getElementById(`${sliderKey}Prev`);
                 slider.nextBtn = document.getElementById(`${sliderKey}Next`);
 
-                if (slider.element) {
-                    slider.totalSlides = slider.element.children.length;
+                if (!slider.element) return;
 
-                    // Create dots for sliders that need them
-                    if (sliderKey !== 'partners') {
-                        slider.dots = document.getElementById(`${sliderKey}Dots`);
-                        if (slider.dots) {
-                            createDots(slider);
-                        }
+                slider.totalSlides = slider.element.children.length;
+
+                if (sliderKey !== 'partners') {
+                    slider.dots = document.getElementById(`${sliderKey}Dots`);
+                    if (slider.dots) {
+                        createDots(slider);
                     }
-
-                    // Add event listeners for buttons
-                    if (slider.prevBtn) {
-                        slider.prevBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide - 1));
-                    }
-                    if (slider.nextBtn) {
-                        slider.nextBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide + 1));
-                    }
-
-                    // Initialize slider
-                    updateSlider(sliderKey);
-
-                    // Add touch support
-                    addTouchSupport(sliderKey);
                 }
+
+                if (slider.prevBtn) {
+                    slider.prevBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide - 1));
+                }
+
+                if (slider.nextBtn) {
+                    slider.nextBtn.addEventListener('click', () => slideTo(sliderKey, slider.currentSlide + 1));
+                }
+
+                updateSlider(sliderKey);
+                addTouchSupport(sliderKey);
             });
 
-            // Auto-advance testimonials slider
-            setInterval(() => {
-                const slider = sliders.testimonials;
-                if (slider.element && slider.totalSlides > 1) {
-                    slideTo('testimonials', (slider.currentSlide + 1) % slider.totalSlides);
-                }
-            }, 5000);
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!prefersReducedMotion) {
+                setInterval(() => {
+                    const slider = sliders.testimonials;
+                    if (slider.element && slider.totalSlides > 1) {
+                        slideTo('testimonials', slider.currentSlide + 1);
+                    }
+                }, 5000);
+            }
         }
 
         function createDots(slider) {
@@ -3469,35 +3820,34 @@
 
             if (width < 768) {
                 return 1;
-            } else if (width < 1200) {
+            }
+
+            if (width < 1200) {
                 if (sliderKey === 'testimonials') return 1;
                 return 2;
-            } else {
-                if (sliderKey === 'testimonials') return 1;
-                if (sliderKey === 'partners') return 5;
-                return 3;
             }
+
+            if (sliderKey === 'testimonials') return 1;
+            if (sliderKey === 'partners') return 5;
+            return 3;
         }
 
         function slideTo(sliderKey, index) {
             const slider = sliders[sliderKey];
-            if (!slider.element) return;
+            if (!slider.element || !slider.element.children.length) return;
 
             const slidesPerView = getSlidesPerView(slider.element.id);
             const maxSlide = slider.totalSlides - slidesPerView;
 
-            // Handle wrap-around for testimonials
             if (sliderKey === 'testimonials') {
                 if (index >= slider.totalSlides) index = 0;
                 if (index < 0) index = slider.totalSlides - 1;
             } else {
-                // For other sliders, clamp to boundaries
-                index = Math.max(0, Math.min(index, maxSlide));
+                index = Math.max(0, Math.min(index, Math.max(maxSlide, 0)));
             }
 
             slider.currentSlide = index;
 
-            // Calculate scroll position correctly accounting for gap
             const style = window.getComputedStyle(slider.element);
             const gap = parseFloat(style.gap || style.columnGap) || 0;
             const slideWidth = slider.element.children[0].offsetWidth + gap;
@@ -3518,19 +3868,20 @@
             const slidesPerView = getSlidesPerView(slider.element.id);
             const maxSlide = slider.totalSlides - slidesPerView;
 
-            // Update button states
-            if (slider.prevBtn) {
-                slider.prevBtn.disabled = slider.currentSlide === 0;
-            }
-            if (slider.nextBtn) {
-                if (sliderKey === 'testimonials') {
-                    slider.nextBtn.disabled = false; // Always enabled for wrap-around
-                } else {
-                    slider.nextBtn.disabled = slider.currentSlide >= maxSlide;
-                }
+            if (sliderKey !== 'testimonials') {
+                slider.currentSlide = Math.min(slider.currentSlide, Math.max(maxSlide, 0));
             }
 
-            // Update dots
+            if (slider.prevBtn) {
+                slider.prevBtn.disabled = sliderKey === 'testimonials' ? false : slider.currentSlide === 0;
+            }
+
+            if (slider.nextBtn) {
+                slider.nextBtn.disabled = sliderKey === 'testimonials'
+                    ? false
+                    : slider.currentSlide >= Math.max(maxSlide, 0);
+            }
+
             if (slider.dots) {
                 const dots = slider.dots.querySelectorAll('.slider-dot');
                 const activeDotIndex = Math.floor(slider.currentSlide / slidesPerView);
@@ -3542,29 +3893,30 @@
 
         function addTouchSupport(sliderKey) {
             const slider = sliders[sliderKey];
-            if (!slider.element) return;
+            if (!slider.element || !slider.element.children.length) return;
 
             let startX;
             let scrollLeft;
             let isDragging = false;
 
-            slider.element.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].pageX - slider.element.offsetLeft;
+            slider.element.addEventListener('touchstart', event => {
+                startX = event.touches[0].pageX - slider.element.offsetLeft;
                 scrollLeft = slider.element.scrollLeft;
                 isDragging = true;
             });
 
-            slider.element.addEventListener('touchmove', (e) => {
+            slider.element.addEventListener('touchmove', event => {
                 if (!isDragging) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - slider.element.offsetLeft;
+
+                event.preventDefault();
+                const x = event.touches[0].pageX - slider.element.offsetLeft;
                 const walk = (x - startX) * 2;
                 slider.element.scrollLeft = scrollLeft - walk;
             });
 
             slider.element.addEventListener('touchend', () => {
                 isDragging = false;
-                // Snap to nearest slide
+
                 const style = window.getComputedStyle(slider.element);
                 const gap = parseFloat(style.gap || style.columnGap) || 0;
                 const slideWidth = slider.element.children[0].offsetWidth + gap;
@@ -3573,107 +3925,171 @@
             });
         }
 
+        function refreshSliders() {
+            Object.keys(sliders).forEach(sliderKey => {
+                const slider = sliders[sliderKey];
+                if (!slider.element) return;
+
+                if (slider.dots) {
+                    createDots(slider);
+                }
+
+                slideTo(sliderKey, slider.currentSlide);
+            });
+        }
+
         function setupResponsiveBehavior() {
-            // Update sliders on window resize
             let resizeTimeout;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    Object.keys(sliders).forEach(sliderKey => {
-                        updateSlider(sliderKey);
-                        if (sliders[sliderKey].dots) {
-                            createDots(sliders[sliderKey]);
-                        }
-                    });
+                    if (window.innerWidth > 992) {
+                        closeMobileMenu();
+                    }
+                    refreshSliders();
                 }, 250);
             });
 
-            // Handle orientation change
             window.addEventListener('orientationchange', () => {
                 setTimeout(() => {
-                    Object.keys(sliders).forEach(sliderKey => {
-                        updateSlider(sliderKey);
-                        if (sliders[sliderKey].dots) {
-                            createDots(sliders[sliderKey]);
-                        }
-                    });
+                    refreshSliders();
                 }, 300);
             });
         }
 
+        function trapModalFocus(event) {
+            const modal = document.getElementById('propertyModal');
+            if (!modal.classList.contains('active')) return;
+
+            const focusableElements = Array.from(
+                modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+            ).filter(element => !element.disabled);
+
+            if (!focusableElements.length) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey && document.activeElement === firstElement) {
+                event.preventDefault();
+                lastElement.focus();
+            } else if (!event.shiftKey && document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        }
+
+        function handleDocumentKeydown(event) {
+            if (event.key === 'Escape') {
+                if (document.getElementById('propertyModal').classList.contains('active')) {
+                    closeModal();
+                    return;
+                }
+
+                if (isMobileMenuOpen) {
+                    closeMobileMenu();
+                }
+            }
+
+            if (event.key === 'Tab') {
+                trapModalFocus(event);
+            }
+        }
+
         function setupEventListeners() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function (event) {
                     const href = this.getAttribute('href');
-                    if (href === '#') return;
+                    if (!href || href === '#') return;
 
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        closeMobileMenu();
-                    }
+                    event.preventDefault();
+                    scrollToSection(href);
+                    closeMobileMenu();
                 });
             });
 
+            const controlLabels = {
+                servicesPrev: 'Previous service',
+                servicesNext: 'Next service',
+                agentsPrev: 'Previous agent',
+                agentsNext: 'Next agent',
+                neighborhoodsPrev: 'Previous neighborhood',
+                neighborhoodsNext: 'Next neighborhood',
+                testimonialsPrev: 'Previous testimonial',
+                testimonialsNext: 'Next testimonial',
+                partnersPrev: 'Previous partner',
+                partnersNext: 'Next partner'
+            };
+
+            Object.entries(controlLabels).forEach(([id, label]) => {
+                const button = document.getElementById(id);
+                if (button) {
+                    button.setAttribute('aria-label', label);
+                }
+            });
+
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            document.querySelector('.theme-toggle-floating').addEventListener('click', toggleTheme);
-
+            document.getElementById('themeToggleFloating').addEventListener('click', toggleTheme);
+            document.getElementById('currencyToggle').addEventListener('click', toggleCurrency);
             document.getElementById('menuToggle').addEventListener('click', toggleMobileMenu);
+            document.getElementById('listPropertyButton').addEventListener('click', listProperty);
+            document.getElementById('modalCloseButton').addEventListener('click', () => closeModal());
+            document.getElementById('scheduleTourButton').addEventListener('click', scheduleTour);
+            document.getElementById('contactAgentButton').addEventListener('click', contactAgent);
 
-            const searchForm = document.querySelector('.search-container');
-            searchForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+            document.getElementById('propertySearchForm').addEventListener('submit', event => {
+                event.preventDefault();
                 filterProperties();
             });
 
-            document.addEventListener('click', (e) => {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterByStatus(tab.dataset.status);
+                });
+            });
+
+            const propertiesGrid = document.getElementById('propertiesGrid');
+            propertiesGrid.addEventListener('click', handlePropertyGridClick);
+            propertiesGrid.addEventListener('keydown', handlePropertyGridKeydown);
+
+            document.addEventListener('click', event => {
                 const menu = document.getElementById('navMenu');
                 const toggle = document.getElementById('menuToggle');
 
                 if (isMobileMenuOpen &&
-                    !menu.contains(e.target) &&
-                    !toggle.contains(e.target) &&
-                    !e.target.closest('.nav-menu')) {
+                    !menu.contains(event.target) &&
+                    !toggle.contains(event.target) &&
+                    !event.target.closest('.nav-menu')) {
                     closeMobileMenu();
                 }
             });
 
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (document.getElementById('propertyModal').classList.contains('active')) {
-                        closeModal();
-                    }
-                    if (isMobileMenuOpen) {
-                        closeMobileMenu();
-                    }
-                }
-            });
+            document.addEventListener('keydown', handleDocumentKeydown);
 
-            document.getElementById('propertyModal').addEventListener('click', (e) => {
-                if (e.target === e.currentTarget) {
+            document.getElementById('propertyModal').addEventListener('click', event => {
+                if (event.target === event.currentTarget) {
                     closeModal();
                 }
             });
         }
 
         function listProperty() {
-            alert('Our team will contact you shortly to discuss listing your property.');
             closeMobileMenu();
+            scrollToSection('#contact');
+            showToast('Share your property details and our listing concierge will reach out within one business day.', 'success');
         }
 
         function scheduleTour() {
             const propertyTitle = document.getElementById('modalTitle').textContent;
-            alert(`Tour scheduled for "${propertyTitle}". Our agent will contact you soon.`);
-            closeModal();
+            closeModal({ returnFocus: false });
+            scrollToSection('#contact');
+            showToast(`Viewing request started for ${propertyTitle}. Our concierge team will contact you shortly.`, 'success');
         }
 
         function contactAgent() {
-            alert('A luxury real estate agent will contact you within 24 hours.');
-            closeModal();
+            closeModal({ returnFocus: false });
+            scrollToSection('#contact');
+            showToast('A luxury real estate specialist will contact you within 24 hours.', 'success');
         }
 
         document.addEventListener('DOMContentLoaded', init);
